@@ -373,17 +373,20 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
 <div class="os-tabs">
   <div class="ot on" id="vtb-sku" onclick="vswTab('sku')">SKU TRACKER</div>
   <div class="ot" id="vtb-sold" onclick="vswTab('sold')">SOLD ITEMS</div>
+  <div class="ot" id="vtb-usable" onclick="vswTab('usable')">USABLE NUMBERS</div>
   <div class="ot" id="vtb-analytics" onclick="vswTab('analytics')">ANALYTICS</div>
   <div class="ot" id="vtb-backup" onclick="vswTab('backup')">BACKUP</div>
 </div>
 <!-- SKU TAB -->
 <div id="vtab-sku">
   <div style="display:flex;gap:6px;padding:8px 12px;background:var(--bg3);border-bottom:1px solid var(--bdr);flex-wrap:wrap;align-items:center">
+    <input id="vsku-id" class="finput" placeholder="SKU #" style="width:65px" type="number" min="1" max="600">
     <input id="vsku-name" class="finput" placeholder="Item name" style="flex:1;min-width:120px">
     <select id="vsku-cat" class="finput"><option>T-Shirt</option><option>Hoodie</option><option>Jacket</option><option>Trousers</option><option>Shorts</option><option>Shoes</option></select>
     <select id="vsku-plat" class="finput"><option>Vinted</option><option>Depop</option><option>eBay</option></select>
     <input id="vsku-cost" class="finput" placeholder="Cost £" style="width:70px" type="number">
     <input id="vsku-price" class="finput" placeholder="Listed £" style="width:70px" type="number">
+    <input id="vsku-listed-date" class="finput" type="date" style="width:130px">
     <button class="rb" onclick="addSku()">+ LIST ITEM</button>
     <input id="vsku-search" class="finput" placeholder="Search..." style="width:100px" oninput="renderSkus()">
     <select id="vsku-fplat" class="finput" onchange="renderSkus()"><option value="">ALL PLATFORMS</option><option>Vinted</option><option>Depop</option><option>eBay</option></select>
@@ -394,6 +397,18 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
     <tbody id="vsku-tbody"></tbody>
   </table></div>
 </div>
+<!-- USABLE NUMBERS TAB -->
+<div id="vtab-usable" class="ph">
+  <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-bottom:1px solid var(--bdr);align-items:center;flex-wrap:wrap">
+    <select id="vusable-filter" class="finput" onchange="renderUsable()">
+      <option value="all">ALL NUMBERS (1-600)</option>
+      <option value="free">FREE ONLY</option>
+      <option value="taken">TAKEN ONLY</option>
+    </select>
+    <span style="font-size:10px;color:var(--tx2);font-family:Courier New,monospace" id="usable-count"></span>
+  </div>
+  <div id="usable-list" style="padding:10px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:3px"></div>
+</div>
 <!-- SOLD TAB -->
 <div id="vtab-sold" class="ph">
   <div style="display:flex;gap:6px;padding:8px 12px;background:var(--bg3);border-bottom:1px solid var(--bdr);flex-wrap:wrap;align-items:center">
@@ -402,7 +417,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
     <select id="vsold-fcat" class="finput" onchange="renderSold()"><option value="">ALL CATEGORIES</option><option>T-Shirt</option><option>Hoodie</option><option>Jacket</option><option>Trousers</option><option>Shorts</option><option>Shoes</option></select>
   </div>
   <div class="tw"><table>
-    <thead><tr><th>SKU</th><th>ITEM</th><th>CATEGORY</th><th>PLATFORM</th><th>COST £</th><th>SOLD FOR £</th><th>PROFIT £</th><th>SOLD DATE</th><th>MONTH</th></tr></thead>
+    <thead><tr><th>SKU</th><th>ITEM</th><th>CATEGORY</th><th>PLATFORM</th><th>COST £</th><th>SOLD FOR £</th><th>PROFIT £</th><th>SOLD DATE</th><th>MONTH</th><th></th></tr></thead>
     <tbody id="vsold-tbody"></tbody>
   </table></div>
   <div id="vsold-footer" style="padding:10px 18px;background:var(--bg3);border-top:1px solid var(--bdr);font-family:Courier New,monospace;font-size:11px;color:var(--tx2)"></div>
@@ -488,7 +503,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
 <div id="sell-modal" class="mw"><div class="mb"><div class="mt">MARK AS SOLD</div>
   <div id="sell-info" style="font-size:12px;color:var(--tx2);margin-bottom:10px;font-family:Courier New,monospace"></div>
   <label>SOLD FOR £</label><input id="sell-price" placeholder="e.g. 15" type="number">
-  <label>SALE DATE</label><input id="sell-date" placeholder="e.g. 12 May">
+  <label>SALE DATE</label><input id="sell-date" type="date">
   <label>PLATFORM SOLD ON</label><select id="sell-plat"><option>Vinted</option><option>Depop</option><option>eBay</option></select>
   <div class="mr2"><button class="cb2" onclick="closeSellM()">CANCEL</button><button class="rb" onclick="confirmSell()">MARK SOLD</button></div>
 </div></div>
@@ -596,6 +611,7 @@ function switchOS(v){
 function fmt(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1)+'K':String(n);}
 function pfmt(n){return n>=1000?n.toLocaleString():String(n);}
 function today(){var d=new Date();return d.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()];}
+function formatDate(s){var d=new Date(s+'T12:00:00');return d.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear();}
 function monthLabel(){var d=new Date();return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear();}
 function getRed(n){var r=[];for(var i=0;i<n;i++)r.push(DREDS[Math.round(i/Math.max(n-1,1)*11)]);return r;}
 function getBlue(n){var r=[];for(var i=0;i<n;i++)r.push(BLUES[Math.round(i/Math.max(n-1,1)*11)]);return r;}
@@ -947,10 +963,15 @@ function getNextSku(){
 }
 function addSku(){
   var name=document.getElementById('vsku-name').value.trim();if(!name)return;
-  var id=getNextSku();
-  vSku.push({id:id,name:name,cat:document.getElementById('vsku-cat').value,platform:document.getElementById('vsku-plat').value,cost:parseFloat(document.getElementById('vsku-cost').value)||0,listedPrice:parseFloat(document.getElementById('vsku-price').value)||0,listedDate:today(),sold:false});
-  ['vsku-name','vsku-cost','vsku-price'].forEach(function(k){document.getElementById(k).value='';});
-  renderSkus();renderVScoreboard();vsave();
+  var id=parseInt(document.getElementById('vsku-id').value);
+  if(!id||id<1||id>600){alert('Please enter a SKU number between 1 and 600.');return;}
+  var taken=vSku.find(function(s){return !s.sold&&s.id===id;});
+  if(taken){alert('SKU #'+id+' is already in use by "'+taken.name+'". Pick a different number.');return;}
+  var rawDate=document.getElementById('vsku-listed-date').value;
+  var listedDate=rawDate?formatDate(rawDate):today();
+  vSku.push({id:id,name:name,cat:document.getElementById('vsku-cat').value,platform:document.getElementById('vsku-plat').value,cost:parseFloat(document.getElementById('vsku-cost').value)||0,listedPrice:parseFloat(document.getElementById('vsku-price').value)||0,listedDate:listedDate,sold:false});
+  ['vsku-id','vsku-name','vsku-cost','vsku-price','vsku-listed-date'].forEach(function(k){document.getElementById(k).value='';});
+  renderSkus();renderVScoreboard();renderUsable();vsave();
 }
 function renderSkus(){
   var q=(document.getElementById('vsku-search').value||'').toLowerCase();
@@ -978,7 +999,7 @@ function renderSkus(){
     tb.appendChild(tr);
   });
 }
-function delSku(i){if(!confirm('Delete SKU #'+vSku[i].id+' "'+vSku[i].name+'"?'))return;vSku.splice(i,1);renderSkus();renderVScoreboard();vsave();}
+function delSku(i){if(!confirm('Delete SKU #'+vSku[i].id+' "'+vSku[i].name+'"?'))return;vSku.splice(i,1);renderSkus();renderVScoreboard();renderUsable();vsave();}
 function openSellM(i){
   sellSkuId=i;var s=vSku[i];
   document.getElementById('sell-info').innerHTML='SKU <b style="color:var(--redl)">#'+s.id+'</b> — '+s.name+' ('+s.cat+') · Listed: <b style="color:#4a9c5e">£'+parseFloat(s.listedPrice).toFixed(2)+'</b> · Cost: £'+parseFloat(s.cost).toFixed(2);
@@ -990,13 +1011,13 @@ function closeSellM(){document.getElementById('sell-modal').style.display='none'
 function confirmSell(){
   if(sellSkuId<0)return;
   var price=parseFloat(document.getElementById('sell-price').value);if(!price)return;
-  var date=document.getElementById('sell-date').value||today();
+  var rawSellDate=document.getElementById('sell-date').value;var date=rawSellDate?formatDate(rawSellDate):today();
   var plat=document.getElementById('sell-plat').value;
   var s=vSku[sellSkuId];
   vSold.push({id:s.id,name:s.name,cat:s.cat,platform:plat,cost:s.cost,soldFor:price,profit:price-s.cost,soldDate:date,month:monthLabel()});
   vSku[sellSkuId].sold=true;
   closeSellM();document.getElementById('sell-price').value='';document.getElementById('sell-date').value='';
-  renderSkus();renderVScoreboard();renderVPieCharts();renderSold();populateSoldMonths();vsave();
+  renderSkus();renderVScoreboard();renderVPieCharts();renderSold();populateSoldMonths();renderUsable();vsave();
 }
 function populateSoldMonths(){
   var months=[...new Set(vSold.map(function(s){return s.month;}))].sort();
@@ -1013,6 +1034,7 @@ function renderSold(){
   if(!data.length){tb.innerHTML='<tr><td colspan="9" style="padding:16px;color:var(--tx3);text-align:center;font-family:Courier New,monospace">NO SOLD ITEMS</td></tr>';}
   else{
     data.slice().reverse().forEach(function(s){
+      var actualIdx=vSold.indexOf(s);
       var profit=parseFloat(s.soldFor)-parseFloat(s.cost);
       var platCol=s.platform==='Vinted'?'#4a7fff':s.platform==='Depop'?'#b02a2a':'#c8a030';
       var tr=document.createElement('tr');
@@ -1024,7 +1046,8 @@ function renderSold(){
         '<td style="color:#4a7fff;font-weight:700;font-family:Courier New,monospace">£'+parseFloat(s.soldFor).toFixed(2)+'</td>'+
         '<td class="sold-profit '+(profit>=0?'pos':'neg')+'" style="font-family:Courier New,monospace">'+(profit>=0?'+':'')+profit.toFixed(2)+'</td>'+
         '<td style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">'+s.soldDate+'</td>'+
-        '<td style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">'+s.month+'</td>';
+        '<td style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">'+s.month+'</td>'+
+        '<td onclick="event.stopPropagation()"><button onclick="delSold('+actualIdx+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer">DEL</button></td>';
       tb.appendChild(tr);
     });
   }
@@ -1069,13 +1092,51 @@ function renderVAnalytics(){
   if(AC.vrp)AC.vrp.destroy();
   AC.vrp=new Chart(document.getElementById('chart-vrevprof'),{type:'bar',data:{labels:['Revenue','Cost','Profit'],datasets:[{data:[Math.round(totRev),Math.round(totCost),Math.round(totProfit)],backgroundColor:['#4a7fff','#b02a2a','#4a9c5e'],borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#555',font:{size:11}},grid:{color:'#161616'}},y:{ticks:{color:'#555',font:{size:10},callback:function(v){return '£'+v;}},grid:{color:'#161616'},beginAtZero:true}}}});
 }
+function delSold(i){
+  if(!confirm('Remove this sold entry? The SKU number will become usable again.'))return;
+  var s=vSold[i];
+  // Free up the SKU - mark it as not sold in vSku if it exists
+  var skuIdx=vSku.findIndex(function(sk){return sk.id===s.id&&sk.sold;});
+  if(skuIdx>-1)vSku.splice(skuIdx,1);
+  vSold.splice(i,1);
+  renderSold();populateSoldMonths();renderVScoreboard();renderVPieCharts();renderUsable();vsave();
+}
+function renderUsable(){
+  var filter=document.getElementById('vusable-filter').value;
+  var takenMap={};
+  vSku.forEach(function(s){if(!s.sold)takenMap[s.id]={name:s.name,cat:s.cat,platform:s.platform,date:s.listedDate};});
+  var items=[];
+  for(var i=1;i<=600;i++){
+    var isTaken=!!takenMap[i];
+    if(filter==='free'&&isTaken)continue;
+    if(filter==='taken'&&!isTaken)continue;
+    items.push({num:i,taken:isTaken,info:takenMap[i]||null});
+  }
+  var free=items.filter(function(x){return !x.taken;}).length;
+  var taken=items.filter(function(x){return x.taken;}).length;
+  document.getElementById('usable-count').textContent=free+' FREE · '+taken+' TAKEN · showing '+items.length;
+  var el=document.getElementById('usable-list');
+  el.innerHTML=items.map(function(x){
+    var numStyle='color:var(--redl);font-weight:700;font-family:Courier New,monospace;width:36px;flex-shrink:0;font-size:13px';
+    var badge=x.taken
+      ? '<span style="display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;font-family:Courier New,monospace;background:#200404;border:1px solid #6a1010;color:#e04040;letter-spacing:1px">TAKEN</span>'
+      : '<span style="display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;font-family:Courier New,monospace;background:#041408;border:1px solid #185c30;color:#40c870;letter-spacing:1px">USABLE</span>';
+    var info=x.taken
+      ? '<span style="font-size:11px;color:var(--tx2);font-family:Courier New,monospace;margin-left:8px">'+x.info.name+' · '+x.info.cat+' · '+x.info.platform+'</span>'
+      : '';
+    return '<div style="display:flex;align-items:center;gap:8px;padding:5px 8px;border-bottom:1px solid var(--bdr);background:var(--bg2)">'+
+      '<span style="'+numStyle+'">#'+String(x.num).padStart(3,'0')+'</span>'+
+      badge+info+'</div>';
+  }).join('');
+}
 function vswTab(name){
-  ['sku','sold','analytics','backup'].forEach(function(t){
+  ['sku','sold','usable','analytics','backup'].forEach(function(t){
     document.getElementById('vtb-'+t).classList.toggle('on',t===name);
     document.getElementById('vtab-'+t).style.display=t===name?'block':'none';
   });
   if(name==='analytics')setTimeout(renderVAnalytics,50);
   if(name==='sold'){renderSold();populateSoldMonths();}
+  if(name==='usable')renderUsable();
 }
 function vExport(){var d={vTodos:vTodos,vSku:vSku,vSold:vSold,vGoalsMonth:vGoalsMonth,exported:new Date().toISOString()};document.getElementById('vbackup-box').value=JSON.stringify(d,null,2);document.getElementById('vbackup-msg').textContent='Exported ✓ — copy and save.';}
 function vImport(){var txt=document.getElementById('vbackup-box').value.trim();if(!txt)return;try{var d=JSON.parse(txt);if(d.vTodos)vTodos=d.vTodos;if(d.vSku)vSku=d.vSku;if(d.vSold)vSold=d.vSold;vsave();renderVintage();document.getElementById('vbackup-msg').textContent='Imported ✓';}catch(e){document.getElementById('vbackup-msg').textContent='Invalid data.';}}
@@ -1112,7 +1173,7 @@ function renderAll(){
 clock();setInterval(clock,1000);
 renderAll();
 ['analytics','followups','clients','els','backup'].forEach(function(t){document.getElementById('tab-'+t).style.display='none';});
-['vtab-sold','vtab-analytics','vtab-backup'].forEach(function(t){document.getElementById(t).style.display='none';});
+['vtab-sold','vtab-usable','vtab-analytics','vtab-backup'].forEach(function(t){document.getElementById(t).style.display='none';});
 </script>
 </body>
 </html>
