@@ -327,7 +327,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
   <div class="sc" style="border-right:1px solid var(--bdr)"><div class="sl">VINTAGE PUSH</div><div style="font-size:16px;color:#4a7fff;font-weight:800;line-height:1.4">£2K PROFIT/MO<br><span style="font-size:11px;color:var(--tx3)">LONG TERM → £4K/MO</span></div></div>
   <div class="sc"><div class="sl">REVENUE MTD</div><div class="sv b" id="vsc-rev">£0</div><div class="pr"><div class="pf b" id="vpb-rev" style="width:0%"></div></div><div class="ss">/ £4,000 TARGET</div></div>
   <div class="sc"><div class="sl">PROFIT MTD</div><div class="sv g" id="vsc-profit">£0</div><div class="pr"><div class="pf g" id="vpb-profit" style="width:0%"></div></div><div class="ss">/ £2,000 TARGET · AUTO-CALCULATES</div></div>
-  <div class="sc"><div class="sl">ACTIVE LISTINGS</div><div class="sv" id="vsc-list">0</div><div class="pr"><div class="pf" id="vpb-list" style="width:0%"></div></div><div class="ss">/ 310 TARGET</div></div>
+  <div class="sc"><div class="sl">ACTIVE LISTINGS</div><div class="sv" id="vsc-list">0</div><div class="pr"><div class="pf" id="vpb-list" style="width:0%"></div></div><div class="ss">/ 310 TARGET · NEW THIS MONTH</div></div>
 </div>
 <div class="mrow">
   <div class="op-panel">
@@ -980,8 +980,15 @@ function renderVScoreboard(){
   document.getElementById('vsc-profit').textContent='£'+Math.round(mtdProfit).toLocaleString();
   document.getElementById('vpb-rev').style.width=Math.min(Math.round(mtdRev/4000*100),100)+'%';
   document.getElementById('vpb-profit').style.width=Math.min(Math.round(mtdProfit/2000*100),100)+'%';
-  document.getElementById('vsc-list').textContent=activeSku;
-  document.getElementById('vpb-list').style.width=Math.min(Math.round(activeSku/310*100),100)+'%';
+  // Count new listings added this calendar month
+  var now=new Date();
+  var monStr=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][now.getMonth()]+' '+now.getFullYear();
+  var newListings=vSku.filter(function(s){return !s.sold&&s.listedDate&&s.listedDate.indexOf(monStr)>-1;}).length;
+  // Add the manually counted 47 for May 2026 baseline
+  var manualBaseline=localStorage.getItem('gvv_listing_baseline')?parseInt(localStorage.getItem('gvv_listing_baseline')):0;
+  var totalListings=newListings+manualBaseline;
+  document.getElementById('vsc-list').textContent=totalListings;
+  document.getElementById('vpb-list').style.width=Math.min(Math.round(totalListings/310*100),100)+'%';
   document.getElementById('v-sku-live').textContent=activeSku;
   document.getElementById('v-total-sold').textContent=vSold.length;
 }
@@ -1203,6 +1210,8 @@ function renderAll(){
   setTimeout(renderNichePie,200);
 }
 clock();setInterval(clock,1000);
+// Set May 2026 manual listing baseline
+if(!localStorage.getItem('gvv_listing_baseline')){localStorage.setItem('gvv_listing_baseline','47');}
 renderAll();
 ['analytics','followups','clients','els','backup'].forEach(function(t){document.getElementById('tab-'+t).style.display='none';});
 ['vtab-sold','vtab-usable','vtab-analytics','vtab-backup'].forEach(function(t){document.getElementById(t).style.display='none';});
