@@ -941,9 +941,38 @@ function vTogT(i){vTodos[i].done=!vTodos[i].done;renderVTodos();vsave();}
 function vDelTodo(i){vTodos.splice(i,1);renderVTodos();vsave();}
 function vEditTodo(i){var v=prompt('Edit:',vTodos[i].text);if(!v||!v.trim())return;vTodos[i].text=v.trim();renderVTodos();vsave();}
 function vAddTodo(){var v=document.getElementById('vti').value.trim();if(!v)return;vTodos.push({text:v,tag:'TODAY',done:false});document.getElementById('vti').value='';renderVTodos();vsave();}
+function renderVScoreboardFiltered(data, fm){
+  // If no month filter, show current month (scoreboard always = this month)
+  if(!fm){renderVScoreboard();return;}
+  var rev=data.reduce(function(s,i){return s+(parseFloat(i.soldFor)||0);},0);
+  var profit=data.reduce(function(s,i){return s+((parseFloat(i.soldFor)||0)-(parseFloat(i.cost)||0));},0);
+  document.getElementById('vsc-rev').textContent='£'+Math.round(rev).toLocaleString();
+  document.getElementById('vsc-profit').textContent='£'+Math.round(profit).toLocaleString();
+  document.getElementById('vpb-rev').style.width=Math.min(Math.round(rev/4000*100),100)+'%';
+  document.getElementById('vpb-profit').style.width=Math.min(Math.round(profit/2000*100),100)+'%';
+}
+function renderVPieChartsFiltered(data){
+  // Rebuild pie charts using only the filtered sold data
+  ['Vinted','Depop','eBay'].forEach(function(plat){
+    var key=plat==='eBay'?'ebay':plat.toLowerCase();
+    var platSold=data.filter(function(s){return s.platform===plat;});
+    var catRev={};CATS.forEach(function(c){catRev[c]=0;});
+    platSold.forEach(function(s){catRev[s.cat]=(catRev[s.cat]||0)+(parseFloat(s.soldFor)||0);});
+    var activeCats=CATS.filter(function(c){return catRev[c]>0;});
+    var cols=plat==='Vinted'?getBlue(Math.max(activeCats.length,1)):plat==='Depop'?getRed(Math.max(activeCats.length,1)):getYellow(Math.max(activeCats.length,1));
+    if(AC['v'+plat])AC['v'+plat].destroy();
+    if(activeCats.length){
+      AC['v'+plat]=new Chart(document.getElementById('chart-'+key),{type:'pie',data:{labels:activeCats,datasets:[{data:activeCats.map(function(c){return catRev[c];}),backgroundColor:cols,borderWidth:2,borderColor:'#080808'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+      document.getElementById('leg-'+key).innerHTML=activeCats.map(function(c,i){return '<span style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--tx2);font-family:Courier New,monospace"><span style="width:8px;height:8px;border-radius:1px;flex-shrink:0;background:'+cols[i]+'"></span>'+c+' £'+catRev[c].toFixed(0)+'</span>';}).join('');
+    } else {
+      document.getElementById('leg-'+key).innerHTML='<span style="font-size:10px;color:var(--tx3);font-family:Courier New,monospace">NO SALES</span>';
+    }
+  });
+}
 function renderVScoreboard(){
   var activeSku=vSku.filter(function(s){return !s.sold;}).length;
   var mon=monthLabel();
+  // Always use current calendar month for scoreboard — resets on 1st of each month
   var mtdSold=vSold.filter(function(s){return s.month===mon;});
   var mtdRev=mtdSold.reduce(function(s,i){return s+(parseFloat(i.soldFor)||0);},0);
   var mtdProfit=mtdSold.reduce(function(s,i){return s+((parseFloat(i.soldFor)||0)-(parseFloat(i.cost)||0));},0);
@@ -1030,6 +1059,9 @@ function renderSold(){
   var fp=document.getElementById('vsold-fplat').value;
   var fc=document.getElementById('vsold-fcat').value;
   var data=vSold.filter(function(s){return(!fm||s.month===fm)&&(!fp||s.platform===fp)&&(!fc||s.cat===fc);});
+  // Update pie charts and top totals to reflect filtered data
+  renderVPieChartsFiltered(data);
+  renderVScoreboardFiltered(data, fm);
   var tb=document.getElementById('vsold-tbody');tb.innerHTML='';
   if(!data.length){tb.innerHTML='<tr><td colspan="9" style="padding:16px;color:var(--tx3);text-align:center;font-family:Courier New,monospace">NO SOLD ITEMS</td></tr>';}
   else{
