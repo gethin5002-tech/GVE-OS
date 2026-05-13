@@ -163,7 +163,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
 <div id="scales-os">
 <div class="srow srow5">
   <div class="sc" style="border-right:1px solid var(--bdr)"><div class="sl">MAY PUSH</div><div style="font-size:18px;color:var(--redl);font-weight:800;line-height:1.3">£2K THIS MONTH</div><div style="font-size:10px;color:var(--tx3);margin-top:4px;font-family:Courier New,monospace">LONG TERM → £10K/MO</div></div>
-  <div class="sc"><div class="sl">REVENUE MTD</div><div class="sv" id="sc-rev" onclick="updateRev()">£0</div><div class="pr"><div class="pf" id="pb-rev" style="width:0%"></div></div><div class="ss">/ £2,000 · CLICK TO UPDATE</div></div>
+  <div class="sc"><div class="sl">REVENUE MTD</div><div class="sv" id="sc-rev" style="cursor:default">£0</div><div class="pr"><div class="pf" id="pb-rev" style="width:0%"></div></div><div class="ss">/ £2,000 · AUTO-CALCULATES</div></div>
   <div class="sc"><div class="sl">LOOMS SENT MTD</div><div class="sv" id="sc-out" onclick="updateLooms()">0</div><div class="pr"><div class="pf" id="pb-out" style="width:0%"></div></div><div class="ss">/ 48 TARGET · CLICK TO UPDATE</div></div>
   <div class="sc"><div class="sl">CLIENTS SIGNED</div><div class="sv g" id="sc-signed">0</div><div class="pr"><div class="pf g" id="pb-signed" style="width:0%"></div></div><div class="ss">/ 5 TARGET · AUTO-UPDATES</div></div>
   <div class="sc"><div class="sl">CONTRACT PENDING</div><div class="sv" id="sc-con">0</div><div class="pr"><div class="pf" id="pb-con" style="width:0%"></div></div><div class="ss">/ 5 TARGET</div></div>
@@ -282,11 +282,12 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
 </div>
 <!-- SETTING & CLOSING TAB -->
 <div id="tab-els" class="ph">
-  <div class="four-col">
-    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">SETTING EARNED</div><div class="cc-val r" id="els-set-earn">£0</div><div class="cc-sub">TOTAL</div></div>
-    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">CLOSING EARNED</div><div class="cc-val g" id="els-close-earn">£0</div><div class="cc-sub">TOTAL</div></div>
-    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">CALLS SET</div><div class="cc-val" id="els-set-ct">0</div><div class="cc-sub">TOTAL</div></div>
-    <div class="cc"><div class="cc-lbl">DEALS CLOSED</div><div class="cc-val" id="els-close-ct">0</div><div class="cc-sub">TOTAL</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr)">
+    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">SETTING EARNED</div><div class="cc-val r" id="els-set-earn">£0</div><div class="cc-sub" id="els-set-sub">THIS MONTH</div></div>
+    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">CLOSING EARNED</div><div class="cc-val g" id="els-close-earn">£0</div><div class="cc-sub" id="els-close-sub">THIS MONTH</div></div>
+    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">TOTAL EARNED</div><div class="cc-val" id="els-total-earn" style="color:#c8a030">£0</div><div class="cc-sub">THIS MONTH</div></div>
+    <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">CALLS SET</div><div class="cc-val" id="els-set-ct">0</div><div class="cc-sub">THIS MONTH</div></div>
+    <div class="cc"><div class="cc-lbl">DEALS CLOSED</div><div class="cc-val" id="els-close-ct">0</div><div class="cc-sub">THIS MONTH</div></div>
   </div>
   <div class="two-col">
     <div class="pnl" style="border-right:1px solid var(--bdr)">
@@ -303,6 +304,11 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
         <button class="rb" style="width:100%" onclick="addElsDeal()">LOG DEAL</button>
       </div>
     </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;padding:8px 18px;background:var(--bg3);border-top:1px solid var(--bdr)">
+    <span style="font-size:10px;color:var(--tx2);font-family:Courier New,monospace;letter-spacing:1px">FILTER BY MONTH</span>
+    <select id="els-fmonth" class="finput" onchange="renderEls()" style="width:140px"><option value="">ALL TIME</option></select>
+    <span style="font-size:10px;color:var(--tx2);font-family:Courier New,monospace" id="els-month-total"></span>
   </div>
   <div id="els-log" style="border-top:1px solid var(--bdr)"></div>
 </div>
@@ -712,6 +718,7 @@ function renderGoals(){
 function addGoal(){var t=document.getElementById('gi').value.trim();var p=parseInt(document.getElementById('gp2').value)||0;if(!t)return;goals.push({text:t,pct:p});document.getElementById('gi').value='';document.getElementById('gp2').value='';renderGoals();save();}
 function delGoal(i){goals.splice(i,1);renderGoals();save();}
 function editPct(i){var v=prompt('Update % for "'+goals[i].text+'" ('+goals[i].pct+'%):');if(v===null)return;var n=parseInt(v);if(isNaN(n))return;goals[i].pct=Math.min(Math.max(n,0),100);renderGoals();save();}
+function editGoalText(i){var v=prompt('Rename goal:',goals[i].text);if(!v||!v.trim())return;goals[i].text=v.trim();renderGoals();save();}
 function newMonth(){var m=prompt('New month name (e.g. JUNE):');if(!m)return;goalsMonth=m.toUpperCase();goals.forEach(function(g){g.pct=0;});renderGoals();save();}
 function renderCreators(){
   document.getElementById('creator-list').innerHTML=CREATORS.map(function(c){
@@ -816,7 +823,7 @@ function saveClient(){
   var n=document.getElementById('cl-name').value.trim();if(!n)return;
   clients.push({name:n,niche:document.getElementById('cl-niche').value,status:document.getElementById('cl-status').value,start:document.getElementById('cl-start').value||today(),notes:document.getElementById('cl-notes').value,payouts:[]});
   closeClientM();['cl-name','cl-niche','cl-start','cl-notes'].forEach(function(id){document.getElementById(id).value='';});
-  renderClients();save();
+  renderClients();calcRevMTD();save();
 }
 function delClient(i){if(!confirm('Remove '+clients[i].name+'?'))return;clients.splice(i,1);renderClients();save();}
 function editClientStatus(i){var s=prompt('Status (Active/Paused/Ended):',clients[i].status);if(!s)return;clients[i].status=s;renderClients();save();}
@@ -831,25 +838,64 @@ function savePayout(){
   closePayoutM();['payout-amt','payout-desc','payout-date'].forEach(function(id){document.getElementById(id).value='';});
   renderClients();save();
 }
+function getElsMonth(d){
+  if(!d.date)return '';
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  for(var i=0;i<months.length;i++){
+    var m=d.date.match(new RegExp(months[i]+'\\s+(\\d{4})'));
+    if(m)return months[i]+' '+m[1];
+  }
+  return '';
+}
 function renderEls(){
+  var now=new Date();
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var curMon=months[now.getMonth()]+' '+now.getFullYear();
+
+  // Populate month filter
+  var sel=document.getElementById('els-fmonth');
+  var selVal=sel?sel.value:'';
+  var allMonths=[...new Set(elsDeals.map(getElsMonth).filter(Boolean))].sort();
+  if(sel){
+    sel.innerHTML='<option value="">ALL TIME</option>'+allMonths.map(function(m){return '<option'+(m===selVal?' selected':'')+'>'+m+'</option>';}).join('');
+  }
+  var filterMon=sel?sel.value:'';
+
+  // Scoreboard always shows THIS month
+  var scoreDeals=elsDeals.filter(function(d){return getElsMonth(d)===curMon;});
   var setEarn=0,closeEarn=0,setCt=0,closeCt=0;
-  elsDeals.forEach(function(d){if(d.type==='setting'){setEarn+=parseInt(d.amt)||0;setCt++;}else{closeEarn+=parseInt(d.amt)||0;closeCt++;}});
-  document.getElementById('els-set-earn').textContent='£'+setEarn.toLocaleString();
-  document.getElementById('els-close-earn').textContent='£'+closeEarn.toLocaleString();
+  scoreDeals.forEach(function(d){if(d.type==='setting'){setEarn+=parseFloat(d.amt)||0;setCt++;}else{closeEarn+=parseFloat(d.amt)||0;closeCt++;}});
+  setEarn=Math.round(setEarn*100)/100;
+  closeEarn=Math.round(closeEarn*100)/100;
+  var total=Math.round((setEarn+closeEarn)*100)/100;
+  document.getElementById('els-set-earn').textContent='£'+setEarn.toFixed(2);
+  document.getElementById('els-close-earn').textContent='£'+closeEarn.toFixed(2);
+  document.getElementById('els-total-earn').textContent='£'+total.toFixed(2);
   document.getElementById('els-set-ct').textContent=setCt;
   document.getElementById('els-close-ct').textContent=closeCt;
+
+  // Chart uses filter selection (or current month if none selected)
+  var chartDeals=filterMon?elsDeals.filter(function(d){return getElsMonth(d)===filterMon;}):scoreDeals;
+  var chartSet=chartDeals.filter(function(d){return d.type==='setting';}).reduce(function(s,d){return s+parseFloat(d.amt)||0;},0);
+  var chartClose=chartDeals.filter(function(d){return d.type==='closing';}).reduce(function(s,d){return s+parseFloat(d.amt)||0;},0);
   if(AC.els)AC.els.destroy();
-  var total=setEarn+closeEarn;
-  if(total>0){
-    AC.els=new Chart(document.getElementById('chart-els'),{type:'pie',data:{labels:['Setting','Closing'],datasets:[{data:[setEarn||0.001,closeEarn||0.001],backgroundColor:['#3a6fdf','#4a9c5e'],borderWidth:2,borderColor:'#080808'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+  var chartTotal=chartSet+chartClose;
+  if(chartTotal>0){
+    AC.els=new Chart(document.getElementById('chart-els'),{type:'pie',data:{labels:['Setting','Closing'],datasets:[{data:[chartSet||0.001,chartClose||0.001],backgroundColor:['#7a1a1a','#d84e4e'],borderWidth:2,borderColor:'#080808'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
     document.getElementById('leg-els').innerHTML=
-      '<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#3a6fdf"></span><b style="color:#4a7fff">SETTING</b>&nbsp;£'+setEarn.toLocaleString()+' ('+setCt+')</span>'+
-      '<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#4a9c5e"></span><b style="color:#4a9c5e">CLOSING</b>&nbsp;£'+closeEarn.toLocaleString()+' ('+closeCt+')</span>';
+      '<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#7a1a1a"></span><b style="color:#b02a2a">SETTING</b>&nbsp;£'+chartSet.toFixed(2)+'</span>'+
+      '<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#d84e4e"></span><b style="color:#d84e4e">CLOSING</b>&nbsp;£'+chartClose.toFixed(2)+'</span>';
   } else {document.getElementById('leg-els').innerHTML='<span style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">LOG DEALS TO SEE SPLIT</span>';}
   var logEl=document.getElementById('els-log');
   if(!elsDeals.length){logEl.innerHTML='<div style="padding:18px;color:var(--tx3);font-size:13px;font-family:Courier New,monospace">NO DEALS LOGGED YET</div>';return;}
-  logEl.innerHTML=elsDeals.slice().reverse().map(function(d,ri){
-    var i=elsDeals.length-1-ri;
+  // Show all deals in log (full history) but scoreboard only shows this month
+  var logData=filterMon?elsDeals.filter(function(d){return getElsMonth(d)===filterMon;}):elsDeals;
+  // Show month total in filter bar
+  var mtEl=document.getElementById('els-month-total');
+  if(mtEl&&filterMon){var mt=logData.reduce(function(s,d){return s+parseFloat(d.amt)||0;},0);mtEl.textContent='TOTAL: £'+mt.toFixed(2);}
+  else if(mtEl){mtEl.textContent='';}
+  logEl.innerHTML=logData.slice().reverse().map(function(d,ri){
+    var i=elsDeals.indexOf(d);
     return '<div class="els-row"><div class="els-type '+(d.type==='setting'?'set':'close')+'">'+(d.type==='setting'?'SETTING':'CLOSING')+'</div>'+
       '<div style="flex:1;font-size:12px;color:var(--tx)">'+d.deal+'<div style="font-size:10px;color:var(--tx3);font-family:Courier New,monospace">'+(d.note||'')+'</div></div>'+
       '<div style="color:var(--redl);font-weight:700;font-family:Courier New,monospace;width:65px;text-align:right">£'+(parseInt(d.amt)||0).toLocaleString()+'</div>'+
@@ -861,9 +907,9 @@ function addElsDeal(){
   var deal=document.getElementById('els-deal').value.trim();var amt=document.getElementById('els-amt').value.trim();if(!deal||!amt)return;
   elsDeals.push({type:document.getElementById('els-type').value,deal:deal,amt:parseInt(amt)||0,note:document.getElementById('els-note').value,date:today()});
   document.getElementById('els-deal').value='';document.getElementById('els-amt').value='';document.getElementById('els-note').value='';
-  renderEls();save();
+  renderEls();calcRevMTD();save();
 }
-function delEls(i){elsDeals.splice(i,1);renderEls();save();}
+function delEls(i){elsDeals.splice(i,1);renderEls();calcRevMTD();save();}
 function updateLooms(){var v=prompt('Looms sent this month (current: '+loomsLogged+'):');if(v===null)return;var n=parseInt(v);if(isNaN(n))return;loomsLogged=n;document.getElementById('sc-out').textContent=n;document.getElementById('pb-out').style.width=Math.min(Math.round(n/48*100),100)+'%';save();}
 function updateRev(){var v=prompt('Revenue this month £ (current: £'+revMTD+'):');if(v===null)return;var n=parseInt(v.replace(/[^0-9]/g,''));if(isNaN(n))return;revMTD=n;document.getElementById('sc-rev').textContent='£'+n;document.getElementById('pb-rev').style.width=Math.min(Math.round(n/2000*100),100)+'%';save();}
 function quickAdd(){
@@ -909,7 +955,7 @@ function swTab(name){
   if(name==='analytics')setTimeout(renderAnalytics,50);
   if(name==='followups')renderFups();
   if(name==='clients')renderClients();
-  if(name==='els')renderEls();
+  if(name==='els'){renderEls();calcRevMTD();}
 }
 function exportData(){
   var data={leads:leads,todos:todos,recs:recs,goals:goals,posts:posts,clients:clients,elsDeals:elsDeals,niches:niches,looms:loomsLogged,rev:revMTD,ig:parseInt(localStorage.getItem('gve_ig'))||487,month:goalsMonth,exported:new Date().toISOString()};
@@ -1199,8 +1245,28 @@ function clock(){
   document.getElementById('dateln').textContent=dl;
   document.getElementById('vdateln').textContent=dl;
 }
+function calcRevMTD(){
+  var now=new Date();
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var curMon=months[now.getMonth()]+' '+now.getFullYear();
+  // ELS this month
+  var elsRev=elsDeals.filter(function(d){return getElsMonth(d)===curMon;}).reduce(function(s,d){return s+(parseFloat(d.amt)||0);},0);
+  // Client payouts this month
+  var clientRev=clients.reduce(function(s,c){
+    return s+(c.payouts||[]).filter(function(p){
+      return p.date&&months.some(function(m,i){return p.date.includes(m)&&i===now.getMonth()&&p.date.includes(String(now.getFullYear()));});
+    }).reduce(function(a,p){return a+(parseInt(p.amt)||0);},0);
+  },0);
+  var total=Math.round((elsRev+clientRev)*100)/100;
+  revMTD=total;
+  document.getElementById('sc-rev').textContent='£'+total.toFixed(2);
+  document.getElementById('pb-rev').style.width=Math.min(Math.round(total/2000*100),100)+'%';
+  // Update revenue goal
+  if(goals[1]&&goals[1].text.toLowerCase().includes('revenue')){goals[1].pct=Math.min(Math.round(total/2000*100),100);renderGoals();}
+}
 function renderAll(){
   populateNicheSelects();
+  setTimeout(calcRevMTD,300);
   renderTable();renderTodos();renderRec();renderGoals();renderCreators();renderPosts();renderFups();
   document.getElementById('sc-out').textContent=loomsLogged;
   document.getElementById('pb-out').style.width=Math.min(Math.round(loomsLogged/48*100),100)+'%';
