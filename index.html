@@ -873,8 +873,14 @@ function renderEls(){
   }
   var filterMon=sel?sel.value:'';
 
-  // Scoreboard always shows THIS month
-  var scoreDeals=elsDeals.filter(function(d){return getElsMonth(d)===curMon;});
+  // Scoreboard shows selected month, or current month if no filter, or all time if ALL TIME
+  var scoreDeals;
+  if(filterMon){
+    scoreDeals=elsDeals.filter(function(d){return getElsMonth(d)===filterMon;});
+  } else {
+    // All time — show everything
+    scoreDeals=elsDeals;
+  }
   var setEarn=0,closeEarn=0,setCt=0,closeCt=0;
   scoreDeals.forEach(function(d){if(d.type==='setting'){setEarn+=parseFloat(d.amt)||0;setCt++;}else{closeEarn+=parseFloat(d.amt)||0;closeCt++;}});
   setEarn=Math.round(setEarn*100)/100;
