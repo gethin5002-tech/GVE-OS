@@ -20,17 +20,17 @@ html,body{background:#080808;margin:0;padding:0}
 .sdot{width:7px;height:7px;border-radius:50%;background:var(--greenl);display:inline-block;margin-right:5px;vertical-align:middle}
 .sdot.saving{background:#c8a030}
 .os-switcher{position:relative;display:inline-block}
-.os-switcher select{background:#1a0808;border:1px solid var(--redl);color:var(--tx);font-family:"Courier New",monospace;font-size:11px;font-weight:700;padding:5px 28px 5px 10px;outline:none;cursor:pointer;appearance:none;letter-spacing:1px}
+.os-switcher select{background:#1a0808;border:1px solid var(--redl);color:var(--tx);font-family:"Courier New",monospace;font-size:11px;font-weight:700;padding:5px 28px 5px 10px;outline:none;cursor:pointer;appearance:none;letter-spacing:1px;border-radius:4px}
 .os-switcher::after{content:"▼";position:absolute;right:8px;top:50%;transform:translateY(-50%);color:var(--redl);font-size:9px;pointer-events:none}
 .srow{display:grid;gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr)}
 .srow5{grid-template-columns:160px 1fr 1fr 1fr 1fr}
 .srow4{grid-template-columns:160px 1fr 1fr 1fr}
-.sc{background:var(--bg2);padding:14px 18px}
+.sc{background:var(--bg2);padding:14px 18px;transition:background .15s}
 .sl{font-size:10px;color:var(--tx2);letter-spacing:2px;margin-bottom:8px;font-family:"Courier New",monospace;font-weight:600}
-.sv{font-size:32px;color:var(--redl);line-height:1;font-weight:800;letter-spacing:-1px;cursor:pointer}
+.sv{font-size:32px;color:var(--redl);line-height:1;font-weight:800;letter-spacing:-1px;cursor:pointer;transition:color .15s}
 .sv:hover{color:var(--redb)}.sv.g{color:var(--greenl)}.sv.b{color:#4a7fff}
 .ss{font-size:11px;color:var(--tx3);margin-top:5px;font-family:"Courier New",monospace}
-.pr{height:2px;background:var(--bg4);margin-top:8px}
+.pr{height:2px;background:var(--bg4);margin-top:8px;border-radius:2px;overflow:hidden}
 .pf{height:100%;background:var(--redl);transition:width .3s}.pf.g{background:var(--greenl)}.pf.b{background:#4a7fff}
 .mrow{display:grid;grid-template-columns:180px 1fr;gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr)}
 .op-panel{background:var(--bg2);padding:18px 16px;border-right:1px solid var(--bdr)}
@@ -52,34 +52,36 @@ html,body{background:#080808;margin:0;padding:0}
 .pl{font-size:10px;color:var(--tx2);letter-spacing:2px;margin-bottom:12px;font-family:"Courier New",monospace;font-weight:700;text-transform:uppercase}
 .t-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)}
 .t-item:last-child{border-bottom:none}
-.t-cb{width:15px;height:15px;border:1.5px solid var(--bdr2);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;border-radius:2px}
+.t-cb{width:15px;height:15px;border:1.5px solid var(--bdr2);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;border-radius:3px;transition:all .12s}
 .t-cb.on{border-color:var(--redl);color:var(--redl);background:#200808}
 .t-tx{font-size:13px;color:var(--tx);flex:1;cursor:pointer;font-weight:500}
 .t-tx.dn{color:var(--tx2);text-decoration:line-through}
 .t-tag{font-size:10px;color:var(--tx3);margin-top:2px;font-family:"Courier New",monospace}
 .add-row{display:flex;gap:1px;border-top:1px solid var(--bdr);margin-top:2px}
-.add-row input{background:var(--bg3);border:none;color:var(--tx);font-size:12px;padding:8px 10px;outline:none;flex:1}
+.add-row input{background:var(--bg3);border:none;color:var(--tx);font-size:12px;padding:8px 10px;outline:none;flex:1;border-radius:4px}
 .add-row input::placeholder{color:var(--tx3)}
-.rb{background:var(--redl);color:#fff;font-family:"Courier New",monospace;font-size:11px;font-weight:700;border:none;padding:8px 14px;cursor:pointer;letter-spacing:.5px}
-.rb:hover{background:var(--redb)}
-.gb{background:transparent;border:1px solid var(--bdr2);color:var(--redl);font-family:"Courier New",monospace;font-size:10px;padding:5px 10px;cursor:pointer}
-.gb:hover{border-color:var(--redl)}
-.bb{background:transparent;border:1px solid #1a3070;color:#4a7fff;font-family:"Courier New",monospace;font-size:10px;padding:4px 8px;cursor:pointer;text-decoration:none;display:inline-block}
+.rb{background:var(--redl);color:#fff;font-family:"Courier New",monospace;font-size:11px;font-weight:700;border:none;padding:8px 14px;cursor:pointer;letter-spacing:.5px;border-radius:4px;transition:all .15s ease}
+.rb:hover{background:var(--redb);transform:translateY(-1px)}
+.gb{background:transparent;border:1px solid var(--bdr2);color:var(--redl);font-family:"Courier New",monospace;font-size:10px;padding:5px 10px;cursor:pointer;border-radius:4px;transition:all .15s ease}
+.gb:hover{border-color:var(--redl);background:#150707}
+.bb{background:transparent;border:1px solid #1a3070;color:#4a7fff;font-family:"Courier New",monospace;font-size:10px;padding:4px 8px;cursor:pointer;text-decoration:none;display:inline-block;border-radius:4px;transition:all .15s ease}
+.bb:hover{border-color:#4a7fff;background:#050a18}
 .goal-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bdr)}
 .goal-item:last-child{border-bottom:none}
 .goal-tx{font-size:13px;color:var(--tx);flex:1;font-weight:500}
 .goal-bar-w{width:70px;flex-shrink:0}
-.goal-track{height:3px;background:var(--bg4);margin-bottom:3px}
-.goal-fill{height:100%;background:var(--redl)}
+.goal-track{height:3px;background:var(--bg4);margin-bottom:3px;border-radius:2px;overflow:hidden}
+.goal-fill{height:100%;background:var(--redl);transition:width .3s}
 .goal-pct{font-size:10px;color:var(--tx2);text-align:right;font-family:"Courier New",monospace;cursor:pointer}
 .content-strip{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr)}
-.cc{background:var(--bg2);padding:14px 18px}
+.cc{background:var(--bg2);padding:14px 18px;transition:background .15s}
 .cc-lbl{font-size:10px;color:var(--tx2);letter-spacing:2px;margin-bottom:6px;font-family:"Courier New",monospace}
 .cc-val{font-size:28px;font-weight:800;color:var(--tx);letter-spacing:-1px}
 .cc-val.r{color:var(--redl)}.cc-val.g{color:#4a9c5e}.cc-val.b{color:#4a7fff}
 .cc-sub{font-size:11px;color:var(--tx3);margin-top:3px;font-family:"Courier New",monospace}
 .post-log{background:var(--bg2);border-top:1px solid var(--bdr)}
-.p-item{display:flex;align-items:center;gap:12px;padding:8px 18px;border-bottom:1px solid var(--bdr)}
+.p-item{display:flex;align-items:center;gap:12px;padding:8px 18px;border-bottom:1px solid var(--bdr);transition:background .12s}
+.p-item:hover{background:var(--bg3)}
 .p-plat{font-size:10px;color:var(--tx2);width:28px;font-family:"Courier New",monospace;font-weight:700}
 .p-title{flex:1;color:var(--tx);font-weight:500;font-size:12px}
 .p-views{color:var(--redl);font-size:11px;width:65px;text-align:right;font-family:"Courier New",monospace;font-weight:700}
@@ -89,56 +91,69 @@ html,body{background:#080808;margin:0;padding:0}
 .crm-stats{display:flex;gap:16px;font-size:11px;font-family:"Courier New",monospace}
 .cs{color:var(--tx2)}.cs b{color:var(--redl)}
 .os-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--bdr);flex-wrap:wrap}
-.ot{padding:10px 16px;font-size:10px;color:var(--tx2);cursor:pointer;letter-spacing:2px;border-bottom:2px solid transparent;font-family:"Courier New",monospace;font-weight:700;text-transform:uppercase;white-space:nowrap}
+.ot{padding:10px 16px;font-size:10px;color:var(--tx2);cursor:pointer;letter-spacing:2px;border-bottom:2px solid transparent;font-family:"Courier New",monospace;font-weight:700;text-transform:uppercase;white-space:nowrap;transition:color .15s}
 .ot.on{color:var(--redl);border-bottom-color:var(--redl)}.ot:hover:not(.on){color:var(--tx)}
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:700px;font-family:"Courier New",monospace}
 thead tr{background:var(--bg3);border-bottom:1px solid var(--bdr)}
 th{padding:7px 9px;text-align:left;font-size:10px;color:var(--tx3);letter-spacing:1.5px;white-space:nowrap;font-weight:700}
-tbody tr{border-bottom:1px solid var(--bdr);cursor:pointer}
+tbody tr{border-bottom:1px solid var(--bdr);cursor:pointer;transition:background .12s}
 tbody tr:hover{background:var(--bg3)}
 td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
-.sb{display:inline-block;padding:2px 7px;font-size:10px;border:1px solid;white-space:nowrap;font-family:"Courier New",monospace;font-weight:700;letter-spacing:.5px}
+.sb{display:inline-block;padding:2px 7px;font-size:10px;border:1px solid;white-space:nowrap;font-family:"Courier New",monospace;font-weight:700;letter-spacing:.5px;border-radius:3px}
 .s0{color:#c03020;border-color:#4a1010;background:#0e0404}.s1{color:#4a7fff;border-color:#1a3070;background:#050a1a}
 .s2{color:#c09030;border-color:#4a3000;background:#100c00}.s3{color:#9a7fdc;border-color:#3a2870;background:#0c081a}
 .s4{color:#442020;border-color:#2a1010;background:#0a0404}.s5{color:var(--tx2);border-color:var(--bdr2);background:var(--bg3)}
 .s6{color:#d05020;border-color:#581800;background:#160500}.s7{color:#e0a030;border-color:#584000;background:#181000}
 .s8{color:#40c870;border-color:#185c30;background:#041408}
-.cbx{width:14px;height:14px;border:1.5px solid var(--bdr2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;color:transparent;border-radius:2px}
+.cbx{width:14px;height:14px;border:1.5px solid var(--bdr2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;color:transparent;border-radius:3px;transition:all .12s}
 .cbx.on{border-color:var(--redl);color:var(--redl);background:#1a0505}
 .sr{display:flex;gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr);flex-wrap:wrap}
-.sr input,.sr select{background:var(--bg3);border:none;color:var(--tx);font-family:"Courier New",monospace;font-size:12px;padding:9px 10px;outline:none}
+.sr input,.sr select{background:var(--bg3);border:none;color:var(--tx);font-family:"Courier New",monospace;font-size:12px;padding:9px 10px;outline:none;border-radius:4px}
 .sr input{flex:1}.sr input::placeholder{color:var(--tx3)}
 .als{display:flex;gap:1px;background:var(--bdr);border-top:1px solid var(--bdr);flex-wrap:wrap}
-.als input,.als select{background:var(--bg3);border:none;color:var(--tx);font-family:"Courier New",monospace;font-size:11px;padding:7px 8px;outline:none}
+.als input,.als select{background:var(--bg3);border:none;color:var(--tx);font-family:"Courier New",monospace;font-size:11px;padding:7px 8px;outline:none;border-radius:4px}
 .als input::placeholder{color:var(--tx3)}
 .fi{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--bdr);gap:12px;flex-wrap:wrap}
 .fn{font-size:14px;color:var(--tx);font-weight:700;letter-spacing:.5px;font-family:"Courier New",monospace}
 .fm{font-size:11px;color:var(--tx2);margin-top:3px;font-family:"Courier New",monospace}
 .ph{display:none}
 .mw{display:none;background:rgba(0,0,0,.92);padding:40px 0;align-items:flex-start;justify-content:center;position:fixed;inset:0;z-index:100;overflow-y:auto}
-.mb{background:#111;border:1px solid var(--bdr2);padding:22px;width:400px;font-family:"Inter",sans-serif;margin:auto}
+.mb{background:#111;border:1px solid var(--bdr2);padding:22px;width:400px;font-family:"Inter",sans-serif;margin:auto;border-radius:10px}
 .mt{font-size:10px;color:var(--redl);letter-spacing:2.5px;margin-bottom:14px;font-family:"Courier New",monospace;font-weight:700}
-.mb input,.mb select,.mb textarea{background:var(--bg3);border:1px solid var(--bdr2);color:var(--tx);font-family:"Inter",sans-serif;font-size:12px;padding:9px 10px;outline:none;width:100%;margin-bottom:2px}
+.mb input,.mb select,.mb textarea{background:var(--bg3);border:1px solid var(--bdr2);color:var(--tx);font-family:"Inter",sans-serif;font-size:12px;padding:9px 10px;outline:none;width:100%;margin-bottom:2px;border-radius:4px}
 .mb textarea{resize:vertical;min-height:50px}
 .mb label{font-size:10px;color:var(--tx2);letter-spacing:1px;font-family:"Courier New",monospace;display:block;margin-bottom:3px;margin-top:6px}
 .mr2{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
-.cb2{background:transparent;border:1px solid var(--bdr2);color:var(--tx2);font-family:"Courier New",monospace;font-size:10px;padding:7px 14px;cursor:pointer}
-.client-card{background:var(--bg3);border:1px solid var(--bdr2);padding:14px 16px;margin:6px 18px}
+.cb2{background:transparent;border:1px solid var(--bdr2);color:var(--tx2);font-family:"Courier New",monospace;font-size:10px;padding:7px 14px;cursor:pointer;border-radius:4px;transition:all .15s ease}
+.cb2:hover{border-color:var(--tx2)}
+.client-card{background:var(--bg3);border:1px solid var(--bdr2);padding:14px 16px;margin:6px 18px;border-radius:8px;transition:border-color .2s}
+.client-card:hover{border-color:#3a3a3a}
 .payout-row{display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid var(--bdr);font-size:11px;font-family:"Courier New",monospace}
-.els-row{display:flex;align-items:center;gap:12px;padding:8px 18px;border-bottom:1px solid var(--bdr)}
+.els-row{display:flex;align-items:center;gap:12px;padding:8px 18px;border-bottom:1px solid var(--bdr);transition:background .12s}
+.els-row:hover{background:var(--bg3)}
 .els-type{font-size:10px;font-weight:700;font-family:"Courier New",monospace;width:60px;flex-shrink:0}
 .els-type.set{color:#4a7fff}.els-type.close{color:#4a9c5e}
-.finput{background:var(--bg3);border:1px solid var(--bdr2);color:var(--tx);font-family:"Courier New",monospace;font-size:11px;padding:7px 9px;outline:none}
+.finput{background:var(--bg3);border:1px solid var(--bdr2);color:var(--tx);font-family:"Courier New",monospace;font-size:11px;padding:7px 9px;outline:none;border-radius:4px}
 .finput::placeholder{color:var(--tx3)}
 .export-box{background:var(--bg2);padding:16px 18px;border-bottom:1px solid var(--bdr)}
-.export-box textarea{background:var(--bg3);border:1px solid var(--bdr2);color:#90c878;font-family:"Courier New",monospace;font-size:10px;padding:10px;width:100%;height:100px;outline:none;resize:none;margin-top:8px}
+.export-box textarea{background:var(--bg3);border:1px solid var(--bdr2);color:#90c878;font-family:"Courier New",monospace;font-size:10px;padding:10px;width:100%;height:100px;outline:none;resize:none;margin-top:8px;border-radius:6px}
 .cr-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)}
 .cr-row:last-child{border-bottom:none}
 .cr-name{font-size:14px;color:var(--tx);flex:1;font-weight:600}
 .cr-stat{font-size:11px;color:var(--tx2);font-family:"Courier New",monospace}
 .cr-stat span{color:var(--redl);font-weight:700}
 .sold-profit.pos{color:#4a9c5e;font-weight:700}.sold-profit.neg{color:#b02a2a;font-weight:700}
+.cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:6px;overflow:hidden;margin-top:12px}
+.cap-cell{background:var(--bg2);padding:12px 14px}
+.cap-lbl{font-size:9px;color:var(--tx2);letter-spacing:1.5px;font-family:"Courier New",monospace;margin-bottom:5px}
+.cap-val{font-size:20px;font-weight:800;letter-spacing:-.5px;cursor:pointer;transition:opacity .15s}
+.cap-val:hover{opacity:.75}
+.cap-sub{font-size:9px;color:var(--tx3);margin-top:3px;font-family:"Courier New",monospace}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#242424;border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:#363636}
 </style>
 </head>
 <body>
@@ -147,7 +162,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
 <div class="topbar">
   <div class="lw">
     <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" fill="#111"/><text x="2" y="17" font-family="Arial Black,Arial" font-weight="900" font-size="15" fill="white">G</text><text x="15" y="17" font-family="Arial Black,Arial" font-weight="900" font-size="15" fill="white">V</text><text x="28" y="17" font-family="Arial Black,Arial" font-weight="900" font-size="15" fill="white">E</text><path d="M20 16 C22 10, 27 5, 35 4" stroke="#4a0a0a" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M20 16 C22 10, 27 5, 35 4" stroke="#c03030" stroke-width="2" fill="none" stroke-linecap="round"/><polygon points="35,4 29,6 33,10" fill="#c03030"/><text x="2" y="31" font-family="Arial Black,Arial" font-weight="900" font-size="10" fill="white" letter-spacing="2">SCALES</text></svg>
-    <div><div class="lt" id="os-title">GVE SCALES</div><div class="ls" id="os-sub">OPERATOR OS // v1.0</div></div>
+    <div><div class="lt" id="os-title">GVE SCALES</div><div class="ls" id="os-sub">OPERATOR OS // v1.1</div></div>
     <div class="os-switcher"><select id="os-select" onchange="switchOS(this.value)"><option value="scales">GVE SCALES</option><option value="vintage">GVE VINTAGE</option></select></div>
   </div>
   <div class="tbr">
@@ -162,7 +177,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
 <!-- GVE SCALES -->
 <div id="scales-os">
 <div class="srow srow5">
-  <div class="sc" style="border-right:1px solid var(--bdr)"><div class="sl">MAY PUSH</div><div style="font-size:18px;color:var(--redl);font-weight:800;line-height:1.3">£2K THIS MONTH</div><div style="font-size:10px;color:var(--tx3);margin-top:4px;font-family:Courier New,monospace">LONG TERM → £10K/MO</div></div>
+  <div class="sc" style="border-right:1px solid var(--bdr)"><div class="sl">JUNE PUSH</div><div style="font-size:18px;color:var(--redl);font-weight:800;line-height:1.3">£2K THIS MONTH</div><div style="font-size:10px;color:var(--tx3);margin-top:4px;font-family:Courier New,monospace">LONG TERM → £10K/MO</div></div>
   <div class="sc"><div class="sl">REVENUE MTD</div><div class="sv" id="sc-rev" style="cursor:default">£0</div><div class="pr"><div class="pf" id="pb-rev" style="width:0%"></div></div><div class="ss">/ £2,000 · AUTO-CALCULATES</div></div>
   <div class="sc"><div class="sl">LOOMS SENT MTD</div><div class="sv" id="sc-out" onclick="updateLooms()">0</div><div class="pr"><div class="pf" id="pb-out" style="width:0%"></div></div><div class="ss">/ 48 TARGET · CLICK TO UPDATE</div></div>
   <div class="sc"><div class="sl">CLIENTS SIGNED</div><div class="sv g" id="sc-signed">0</div><div class="pr"><div class="pf g" id="pb-signed" style="width:0%"></div></div><div class="ss">/ 5 TARGET · AUTO-UPDATES</div></div>
@@ -179,7 +194,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
   </div>
   <div class="sess-panel">
     <div><div class="greeting">Good <em id="gp">afternoon</em>, Gethin.</div><div class="dateln" id="dateln">LOADING...</div></div>
-    <div><div class="time-big" id="ltime">--:-- --</div><div class="time-sub">LOCAL TIME · LONDON</div></div>
+    <div><div class="time-big" id="ltime">--:-- --</div><div class="time-sub">LOCAL TIME · LONDON</div><div id="pl-scales" style="margin-top:10px;text-align:right;font-family:Courier New,monospace"><span style="font-size:10px;color:var(--tx2);letter-spacing:1.5px">MONTH P/L · SCALES+VINTAGE</span><br><span id="pl-scales-val" style="font-size:22px;font-weight:800;color:#4a9c5e;letter-spacing:-1px">£0</span></div></div>
   </div>
 </div>
 <div class="three-col">
@@ -191,7 +206,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
     <div class="pl">RECURRING DAILY</div><div id="rec-list"></div>
     <div style="padding-top:10px;border-top:1px solid var(--bdr);margin-top:8px">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-        <div class="pl" style="margin-bottom:0" id="goals-month-lbl">MAY GOALS</div>
+        <div class="pl" style="margin-bottom:0" id="goals-month-lbl">JUNE GOALS</div>
         <button class="gb" style="font-size:9px;padding:3px 8px" onclick="newMonth()">NEW MONTH</button>
       </div>
       <div id="goals-list"></div>
@@ -278,6 +293,33 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
     <div class="cc" style="border-right:1px solid var(--bdr)"><div class="cc-lbl">CLIENT vs CLIENT</div><div style="position:relative;height:80px;margin-top:4px"><canvas id="chart-clients"></canvas></div><div id="leg-clients" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;font-size:9px;font-family:Courier New,monospace"></div></div>
     <div class="cc"><div class="cc-lbl">ADD CLIENT</div><button class="rb" style="font-size:10px;padding:5px 10px;margin-top:8px" onclick="openAddClient()">+ ADD CLIENT</button></div>
   </div>
+  <div class="client-card" id="capcut-panel" style="border-color:#1f4d3a">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <div>
+        <div style="font-size:16px;font-weight:700;color:var(--tx)">THE CAPCUT SYSTEM <span style="color:#4a9c5e">— JACK YOUNG</span></div>
+        <div style="font-size:10px;color:var(--tx2);margin-top:3px;font-family:Courier New,monospace">G/O BASE 15% · +5% IF I SET · +10% IF I CLOSE · UPDATED <span id="cap-upd" style="color:var(--tx)">—</span></div>
+      </div>
+      <div style="font-size:10px;color:var(--tx3);font-family:Courier New,monospace">CLICK ££ NUMBERS TO UPDATE</div>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-cell"><div class="cap-lbl">CONTRACTED REVENUE</div><div class="cap-val" style="color:#4a9c5e" id="cap-contracted" onclick="editCapcut('contracted','Total contracted revenue £')">£0</div><div class="cap-sub">FULL DEAL VALUE</div></div>
+      <div class="cap-cell"><div class="cap-lbl">CASH COLLECTED</div><div class="cap-val" style="color:#4a7fff" id="cap-collected" onclick="editCapcut('collected','Cash collected £')">£0</div><div class="cap-sub" id="cap-sales-sub">0 SALES</div></div>
+      <div class="cap-cell"><div class="cap-lbl">OUTSTANDING</div><div class="cap-val" style="color:#c8a030" id="cap-outstanding">£0</div><div class="cap-sub">ON PAYMENT PLANS</div></div>
+      <div class="cap-cell"><div class="cap-lbl">MY CUT EARNED</div><div class="cap-val" style="color:#b02a2a" id="cap-earned">£0</div><div class="cap-sub">AUTO FROM CLOSES</div></div>
+      <div class="cap-cell"><div class="cap-lbl">PAID TO ME</div><div class="cap-val" style="color:#4a9c5e" id="cap-paid" onclick="editCapcut('operatorPaid','Paid to me so far £')">£0</div><div class="cap-sub">RECEIVED</div></div>
+      <div class="cap-cell"><div class="cap-lbl">OWED TO ME</div><div class="cap-val" style="color:#d05020" id="cap-owed">£0</div><div class="cap-sub">UNPAID</div></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--bdr)">
+      <span style="font-size:10px;color:var(--tx2);font-family:Courier New,monospace;letter-spacing:1px;margin-right:2px">LOG A CLOSE</span>
+      <input id="cap-deal-name" class="finput" placeholder="Client name" style="flex:1;min-width:110px">
+      <input id="cap-deal-amt" class="finput" placeholder="Sale £" style="width:80px" type="number">
+      <button id="cap-tog-set" class="gb" onclick="capToggle('set')" style="border-color:#1a3070;color:#4a7fff">SET +5%</button>
+      <button id="cap-tog-close" class="gb" onclick="capToggle('close')" style="border-color:#185c30;color:#4a9c5e">CLOSE +10%</button>
+      <span id="cap-rate-preview" style="font-size:11px;color:#c8a030;font-family:Courier New,monospace;font-weight:700;min-width:42px;text-align:center">15%</span>
+      <button class="rb" onclick="addCapcutDeal()">LOG CLOSE</button>
+    </div>
+    <div id="cap-deal-log" style="margin-top:6px"></div>
+  </div>
   <div id="clients-list" style="padding:4px 0"></div>
 </div>
 <!-- SETTING & CLOSING TAB -->
@@ -347,7 +389,7 @@ td{padding:7px 9px;font-size:12px;color:var(--tx);vertical-align:middle}
   </div>
   <div class="sess-panel">
     <div><div class="greeting">Good <em id="vgp">afternoon</em>, Gethin.</div><div class="dateln" id="vdateln">LOADING...</div></div>
-    <div><div class="time-big" id="vltime">--:-- --</div><div class="time-sub">LOCAL TIME · LONDON</div></div>
+    <div><div class="time-big" id="vltime">--:-- --</div><div class="time-sub">LOCAL TIME · LONDON</div><div id="pl-vintage" style="margin-top:10px;text-align:right;font-family:Courier New,monospace"><span style="font-size:10px;color:var(--tx2);letter-spacing:1.5px">MONTH P/L · SCALES+VINTAGE</span><br><span id="pl-vintage-val" style="font-size:22px;font-weight:800;color:#4a9c5e;letter-spacing:-1px">£0</span></div></div>
   </div>
 </div>
 <div class="two-col">
@@ -524,7 +566,7 @@ var loomsLogged=0;var revMTD=0;
 
 var DEFAULT_NICHES=['Trading','Appt Setting','High Ticket Sales','Dropshipping','Reselling','YT Automation','TikTok Shop','Amazon FBA','Property','SMMA','UGC','CapCut Automation'];
 var DEFAULT_LEADS=[
-  {name:'Jack Young',status:'Contract Pending',niche:'CapCut Automation',followers:'120k',platform:'IG',ig:'',yt:'',freeValue:'https://gamma.app/docs/capcut-partnership-pitch',firstMsg:'Apr 30',lastMsg:'May 6',nextFup:'',checks:[true,true,false,false],notes:'CapCut deal'},
+  {name:'Jack Young',status:'Signed',niche:'CapCut Automation',followers:'120k',platform:'IG',ig:'',yt:'',freeValue:'https://gamma.app/docs/capcut-partnership-pitch',firstMsg:'Apr 30',lastMsg:'Jun 12',nextFup:'',checks:[true,true,true,true],notes:'The CapCut System — live, 12 sales'},
   {name:'Iestyn',status:'Watched Loom',niche:'YT Automation',followers:'8k',platform:'IG',ig:'',yt:'',freeValue:'',firstMsg:'Apr 25',lastMsg:'May 6',nextFup:'',checks:[true,true,false,false],notes:''},
   {name:'Aidan Kalinski',status:'Messaged',niche:'High Ticket Sales',followers:'22k',platform:'IG',ig:'',yt:'',freeValue:'',firstMsg:'May 1',lastMsg:'May 6',nextFup:'',checks:[true,false,false,false],notes:''},
   {name:'Zaid',status:'Not Interested',niche:'Trading',followers:'55k',platform:'IG',ig:'',yt:'',freeValue:'',firstMsg:'May 1',lastMsg:'May 1',nextFup:'',checks:[true,false,false,false],notes:''},
@@ -541,6 +583,29 @@ var DEFAULT_POSTS=[{title:'Pain point hook reel',plat:'IG',views:797,date:'May 9
 var CREATORS=[{name:'Jack Young',ig:593,yt:627},{name:'NPC Trades',ig:13100,yt:0},{name:'Frankie Ryan',ig:1500,yt:666}];
 var DEFAULT_VRECS=[{text:'Photo & list 10 items',tag:'DAILY',done:false},{text:'Check messages on all platforms',tag:'DAILY',done:false}];
 
+// ELS full history — seeded 12 Jun 2026 from Gethin_ELS_Finance.xlsx (monthly totals)
+var ELS_SEED=[
+{type:'setting',deal:'ELS — Oct 2025 setting total',amt:382.27,note:'Imported from finance sheet',date:'Oct 2025'},
+{type:'setting',deal:'ELS — Nov 2025 setting total',amt:726.82,note:'Imported from finance sheet',date:'Nov 2025'},
+{type:'closing',deal:'ELS — Nov 2025 closing total',amt:54.07,note:'Imported from finance sheet',date:'Nov 2025'},
+{type:'setting',deal:'ELS — Dec 2025 setting total',amt:1416.15,note:'Imported from finance sheet',date:'Dec 2025'},
+{type:'closing',deal:'ELS — Dec 2025 closing total',amt:21.80,note:'Imported from finance sheet',date:'Dec 2025'},
+{type:'setting',deal:'ELS — Jan 2026 setting total',amt:1952.13,note:'Imported from finance sheet',date:'Jan 2026'},
+{type:'closing',deal:'ELS — Jan 2026 closing total',amt:21.80,note:'Imported from finance sheet',date:'Jan 2026'},
+{type:'setting',deal:'ELS — Feb 2026 setting total',amt:1410.94,note:'Imported from finance sheet',date:'Feb 2026'},
+{type:'closing',deal:'ELS — Feb 2026 closing total',amt:64.72,note:'Imported from finance sheet',date:'Feb 2026'},
+{type:'setting',deal:'ELS — Mar 2026 setting total',amt:1438.14,note:'Imported from finance sheet',date:'Mar 2026'},
+{type:'closing',deal:'ELS — Mar 2026 closing total',amt:145.89,note:'Imported from finance sheet',date:'Mar 2026'},
+{type:'setting',deal:'ELS — Apr 2026 setting total',amt:1347.03,note:'Imported from finance sheet',date:'Apr 2026'},
+{type:'closing',deal:'ELS — Apr 2026 closing total',amt:180.82,note:'Imported from finance sheet',date:'Apr 2026'},
+{type:'setting',deal:'ELS — May 2026 setting total',amt:802.44,note:'Imported from finance sheet',date:'May 2026'},
+{type:'closing',deal:'ELS — May 2026 closing total',amt:433.72,note:'Imported from finance sheet',date:'May 2026'},
+{type:'setting',deal:'ELS — Jun 2026 setting (so far)',amt:252.01,note:'Imported from finance sheet',date:'Jun 2026'},
+{type:'closing',deal:'ELS — Jun 2026 closing (so far)',amt:180.49,note:'Imported from finance sheet',date:'Jun 2026'}
+];
+
+var VSKU_SEED=[{"id":120,"name":"Ed Hardy Baby Blue Tracksuit Set","cat":"Hoodie","platform":"Vinted","cost":16.0,"listedPrice":55.0,"listedDate":"28 May 2026","sold":false},{"id":119,"name":"Ed Hardy Pink Panther Tracksuit Set","cat":"Hoodie","platform":"Vinted","cost":16.0,"listedPrice":55.0,"listedDate":"28 May 2026","sold":false},{"id":117,"name":"Calvin Klein Golf T-Shirt","cat":"T-Shirt","platform":"Vinted","cost":2.0,"listedPrice":2.0,"listedDate":"28 May 2026","sold":false},{"id":116,"name":"The North Face 800 Summit Series Puffer","cat":"Jacket","platform":"Vinted","cost":0.0,"listedPrice":33.0,"listedDate":"28 May 2026","sold":false},{"id":115,"name":"Nike Puffer Gilet Vest","cat":"Jacket","platform":"Vinted","cost":0.0,"listedPrice":26.0,"listedDate":"28 May 2026","sold":false},{"id":114,"name":"Polo Ralph Lauren Puffer Jacket","cat":"Jacket","platform":"Vinted","cost":0.0,"listedPrice":38.0,"listedDate":"28 May 2026","sold":false},{"id":112,"name":"Polo Ralph Lauren Chinos","cat":"Trousers","platform":"Vinted","cost":5.0,"listedPrice":8.0,"listedDate":"28 May 2026","sold":false},{"id":111,"name":"Broken Planet Market \"Out Of Sight\" Hoodie","cat":"Hoodie","platform":"Vinted","cost":0.0,"listedPrice":30.0,"listedDate":"28 May 2026","sold":false},{"id":109,"name":"Chaps Ralph Lauren Short Sleeve Shirt","cat":"Shorts","platform":"Vinted","cost":0.0,"listedPrice":6.0,"listedDate":"28 May 2026","sold":false},{"id":104,"name":"Tommy Hilfiger Chino Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"listedPrice":6.0,"listedDate":"28 May 2026","sold":false},{"id":103,"name":"Nike Multi Logo Hoodie","cat":"Hoodie","platform":"Vinted","cost":0.0,"listedPrice":8.0,"listedDate":"28 May 2026","sold":false},{"id":102,"name":"Supreme Bandana Box Logo Hoodie","cat":"Hoodie","platform":"Vinted","cost":0.0,"listedPrice":100.0,"listedDate":"28 May 2026","sold":false},{"id":101,"name":"Polo Ralph Lauren Chinos","cat":"Trousers","platform":"Vinted","cost":5.0,"listedPrice":5.0,"listedDate":"28 May 2026","sold":false},{"id":100,"name":"H&M Shirt","cat":"T-Shirt","platform":"Vinted","cost":0.0,"listedPrice":2.0,"listedDate":"28 May 2026","sold":false},{"id":99,"name":"Ralph Lauren Shirt","cat":"T-Shirt","platform":"Vinted","cost":0.0,"listedPrice":15.0,"listedDate":"28 May 2026","sold":false},{"id":97,"name":"Polo Ralph Lauren Chino Shorts","cat":"Shorts","platform":"Vinted","cost":0.0,"listedPrice":9.0,"listedDate":"28 May 2026","sold":false},{"id":96,"name":"Ralph Lauren Short Sleeve Shirt","cat":"Shorts","platform":"Vinted","cost":0.0,"listedPrice":10.0,"listedDate":"28 May 2026","sold":false},{"id":95,"name":"Ralph Lauren Short Sleeve Shirt","cat":"Shorts","platform":"Vinted","cost":0.0,"listedPrice":15.0,"listedDate":"28 May 2026","sold":false},{"id":93,"name":"Ralph Lauren Plaid Short Sleeve Shirt","cat":"Shorts","platform":"Vinted","cost":0.0,"listedPrice":12.0,"listedDate":"28 May 2026","sold":false},{"id":91,"name":"Carhartt Beige Cargo Shorts","cat":"Shorts","platform":"Vinted","cost":12.0,"listedPrice":12.0,"listedDate":"28 May 2026","sold":false},{"id":90,"name":"Ralph Lauren Lambswool Scarf","cat":"T-Shirt","platform":"Vinted","cost":8.0,"listedPrice":10.0,"listedDate":"27 May 2026","sold":false},{"id":89,"name":"Ralph Lauren Lambswool Scarf","cat":"T-Shirt","platform":"Vinted","cost":8.0,"listedPrice":10.0,"listedDate":"27 May 2026","sold":false}];
+var VSOLD_SEED=[{"id":544,"name":"Tommy Hilfiger Chino Trousers Eddd","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":462,"name":"Yves Saint Laurent Long Sleeve 259D","cat":"T-Shirt","platform":"Vinted","cost":8,"soldFor":15,"profit":7,"soldDate":"19 May 2026","month":"May 2026"},{"id":371,"name":"Ralph Lauren Chino Pants 46Ca","cat":"Trousers","platform":"Vinted","cost":5,"soldFor":5.6,"profit":0.6,"soldDate":"19 May 2026","month":"May 2026"},{"id":480,"name":"Christian Dior Chemises Long Sleeve 192B","cat":"T-Shirt","platform":"Vinted","cost":8,"soldFor":16,"profit":8,"soldDate":"19 May 2026","month":"May 2026"},{"id":533,"name":"Tommy Hilfiger Smart Trousers 8Ef6","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":305,"name":"Mens Tommy Hilfiger Chinos 3Ec2","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":8,"profit":4.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":547,"name":"Tommy Hilfiger Chino Trousers 81Ff","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":513,"name":"Tommy Hilfiger Pleated Chino Trousers 0B30","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":482,"name":"Tommy Hilfiger Crest Logo Chinos 8Da9","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":540,"name":"Tommy Hilfiger Chino Trousers A35D","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":14,"profit":10.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":542,"name":"Tommy Hilfiger Chino Trousers D805","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":560,"name":"Tommy Hilfiger Chinos","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":562,"name":"Tommy Hilfiger Athletics Shorts 4Bcf","cat":"Shorts","platform":"Vinted","cost":3.7,"soldFor":8,"profit":4.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":553,"name":"Tommy Hilfiger Chinos","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":551,"name":"Tommy Hilfiger Cargo Trousers 93E8","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":543,"name":"Tommy Hilfiger Chino Trousers 239C","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":502,"name":"Tommy Hilfiger Chino Trousers 24F0","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":489,"name":"Tommy Hilfiger Smart Trousers 01F5","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":526,"name":"Tommy Hilfiger Slim Fit Trousers Aa8A","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":550,"name":"Tommy Hilfiger Slim Fit Chino 3576","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":546,"name":"Tommy Hilfiger Chino Trousers 0E0F","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":557,"name":"Tommy Hilfiger Chinos","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":549,"name":"Tommy Hilfiger Tailored Fit Chino 4741","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":468,"name":"Yves Saint Laurent Shirt 9D4E","cat":"T-Shirt","platform":"Vinted","cost":8,"soldFor":20,"profit":12,"soldDate":"19 May 2026","month":"May 2026"},{"id":291,"name":"Ralph Lauren Tan Chino Trousers C8C8","cat":"Trousers","platform":"Vinted","cost":5,"soldFor":13,"profit":8,"soldDate":"19 May 2026","month":"May 2026"},{"id":473,"name":"Yves Saint Laurent Shirt 1B02","cat":"T-Shirt","platform":"Vinted","cost":8,"soldFor":20,"profit":12,"soldDate":"19 May 2026","month":"May 2026"},{"id":509,"name":"Tommy Hilfiger Chino Trousers 6F9B","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15,"profit":11.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":524,"name":"Tommy Hilfiger Slim Fit Trousers 5Bea","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":364,"name":"Ralph Lauren Beige Chino Pants 6Dc4","cat":"Trousers","platform":"Vinted","cost":5,"soldFor":13,"profit":8,"soldDate":"19 May 2026","month":"May 2026"},{"id":488,"name":"Tommy Hilfiger Smart Trousers D2Cc","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":10,"profit":6.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":521,"name":"Tommy Hilfiger Tailored Fit Trousers A8Ad","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":10,"profit":6.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":529,"name":"Tommy Hilfiger Smart Trousers D9F2","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":274,"name":"Nike Zip Up Sweatshirt","cat":"Hoodie","platform":"Vinted","cost":6.33,"soldFor":18.99,"profit":12.66,"soldDate":"19 May 2026","month":"May 2026"},{"id":486,"name":"Hilfiger Smart Trousers","cat":"Trousers","platform":"Vinted","cost":4,"soldFor":12,"profit":8,"soldDate":"19 May 2026","month":"May 2026"},{"id":501,"name":"Tommy Hilfiger Pleated Chino Trousers 5C4E","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":504,"name":"Tommy Hilfiger Pinstripe Wool Trousers Fab1","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":498,"name":"Tommy Hilfiger Chino Trousers E2Da","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":485,"name":"Tommy Hilfiger Tailored Fit Chinos 0724","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":500,"name":"Tommy Hilfiger Chino Trousers D151","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":413,"name":"Tommy Hilfiger Knit Vest 827B","cat":"Hoodie","platform":"Vinted","cost":1.67,"soldFor":5,"profit":3.33,"soldDate":"19 May 2026","month":"May 2026"},{"id":129,"name":"Barbour Navy Chinos","cat":"Trousers","platform":"Vinted","cost":20,"soldFor":12,"profit":-8,"soldDate":"19 May 2026","month":"May 2026"},{"id":471,"name":"Yves Saint Laurent Shirt 9A1E","cat":"T-Shirt","platform":"Vinted","cost":8,"soldFor":18,"profit":10,"soldDate":"19 Apr 2026","month":"May 2026"},{"id":38,"name":"Womans Green L Ed Hardy F69D","cat":"Hoodie","platform":"Vinted","cost":16,"soldFor":45,"profit":29,"soldDate":"19 Apr 2026","month":"May 2026"},{"id":463,"name":"Yves Saint Laurent Long Sleeve 8209","cat":"T-Shirt","platform":"Vinted","cost":8,"soldFor":16,"profit":8,"soldDate":"19 Apr 2026","month":"May 2026"},{"id":456,"name":"Black Pull And Bear Tshirt F8B3","cat":"T-Shirt","platform":"Vinted","cost":1.67,"soldFor":5,"profit":3.33,"soldDate":"19 May 2026","month":"May 2026"},{"id":537,"name":"Tommy Hilfiger Pinstripe Smart Trousers C5A5","cat":"Trousers","platform":"Depop","cost":3.7,"soldFor":10,"profit":6.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":512,"name":"Tommy Hilfiger Pleated Chino Trousers 514C","cat":"Trousers","platform":"Depop","cost":3.7,"soldFor":12,"profit":8.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":466,"name":"Yves Saint Laurent Long Sleeve 0669","cat":"T-Shirt","platform":"Depop","cost":8,"soldFor":20,"profit":12,"soldDate":"19 May 2026","month":"May 2026"},{"id":478,"name":"Lacoste shirt","cat":"T-Shirt","platform":"Depop","cost":8,"soldFor":20,"profit":12,"soldDate":"19 May 2026","month":"May 2026"},{"id":130,"name":"Yves Saint Laurent White Shirt","cat":"T-Shirt","platform":"Depop","cost":8,"soldFor":20,"profit":12,"soldDate":"19 May 2026","month":"May 2026"},{"id":483,"name":"Tommy Hilfiger Pinstripe Trousers","cat":"Trousers","platform":"Depop","cost":3.7,"soldFor":9,"profit":5.3,"soldDate":"19 May 2026","month":"May 2026"},{"id":135,"name":"Ralph Lauren chino pants","cat":"Trousers","platform":"Depop","cost":5,"soldFor":9.99,"profit":4.99,"soldDate":"19 May 2026","month":"May 2026"},{"id":453,"name":"Home grown graphic tshirt","cat":"T-Shirt","platform":"Depop","cost":3.33,"soldFor":10,"profit":6.67,"soldDate":"19 May 2026","month":"May 2026"},{"id":1,"name":"Supreme FW 18 split crewneck jumper","cat":"Hoodie","platform":"Depop","cost":0,"soldFor":57,"profit":57,"soldDate":"19 Apr 2026","month":"May 2026"},{"id":125,"name":"Yves Saint Laurent Pour Homme Shirt","cat":"T-Shirt","platform":"Vinted","cost":8.0,"soldFor":20.0,"profit":12.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":118,"name":"Khaki XL Ed Hardy Tracksuit Set","cat":"Hoodie","platform":"Vinted","cost":16.0,"soldFor":47.0,"profit":31.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":121,"name":"Bundle: SKU 121 + SKU 475","cat":"T-Shirt","platform":"Vinted","cost":0.0,"soldFor":33.0,"profit":33.0,"soldDate":"23 May 2026","month":"May 2026","notes":"Bundle sale"},{"id":528,"name":"Khaki Hooded Carhartt Rework Jacket","cat":"Jacket","platform":"Vinted","cost":15.0,"soldFor":30.0,"profit":15.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":0,"name":"Tommy Hilfiger Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12.0,"profit":8.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":585,"name":"Carhartt Detroit Style Reworked Work Jacket","cat":"Jacket","platform":"Vinted","cost":15.0,"soldFor":25.0,"profit":10.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":483,"name":"Tommy Hilfiger Pinstripe Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12.0,"profit":8.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":126,"name":"Yves Saint Laurent Light Blue Shirt","cat":"T-Shirt","platform":"Vinted","cost":8.0,"soldFor":15.0,"profit":7.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":544,"name":"Tommy Hilfiger Chino Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":15.0,"profit":11.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":125,"name":"Yves Saint Laurent Pour Homme Shirt","cat":"T-Shirt","platform":"Vinted","cost":8.0,"soldFor":20.0,"profit":12.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":584,"name":"Nike Sportswear Club Fleece Joggers","cat":"Trousers","platform":"Vinted","cost":10.0,"soldFor":6.0,"profit":-4.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":594,"name":"Polo Ralph Lauren Chino Trousers","cat":"Trousers","platform":"Vinted","cost":5.0,"soldFor":5.0,"profit":0.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":600,"name":"Tommy Hilfiger Denim Shorts","cat":"Shorts","platform":"Vinted","cost":3.7,"soldFor":3.0,"profit":-0.7,"soldDate":"23 May 2026","month":"May 2026"},{"id":595,"name":"Ed Hardy Tiger Joggers","cat":"Trousers","platform":"Vinted","cost":7.0,"soldFor":5.0,"profit":-2.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":426,"name":"Tommy Hilfiger Knit Jumper","cat":"Hoodie","platform":"Vinted","cost":3.0,"soldFor":6.0,"profit":3.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":24,"name":"Tommy Hilfiger Chino Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":5.0,"profit":1.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":28,"name":"Polo Ralph Lauren Chino Trousers","cat":"Trousers","platform":"Vinted","cost":5.0,"soldFor":3.0,"profit":-2.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":18,"name":"Ed Hardy Zip Up Hoodie","cat":"Hoodie","platform":"Vinted","cost":4.0,"soldFor":10.8,"profit":6.8,"soldDate":"23 May 2026","month":"May 2026"},{"id":10,"name":"Polo Ralph Lauren Checked Pleated Shorts","cat":"Shorts","platform":"Vinted","cost":1.67,"soldFor":5.0,"profit":3.33,"soldDate":"23 May 2026","month":"May 2026"},{"id":2,"name":"Tommy Hilfiger Womens Chino Shorts BNWT","cat":"Shorts","platform":"Vinted","cost":3.7,"soldFor":3.0,"profit":-0.7,"soldDate":"23 May 2026","month":"May 2026"},{"id":20,"name":"Ed Hardy Zip Up Hoodie","cat":"Hoodie","platform":"Vinted","cost":4.0,"soldFor":13.5,"profit":9.5,"soldDate":"23 May 2026","month":"May 2026"},{"id":592,"name":"Tommy Hilfiger Chino Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":12.0,"profit":8.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":14,"name":"Yves Saint Laurent Button Down Shirt","cat":"T-Shirt","platform":"Vinted","cost":8.0,"soldFor":10.0,"profit":2.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":11,"name":"Tommy Hilfiger Knit","cat":"Hoodie","platform":"Vinted","cost":2.0,"soldFor":3.0,"profit":1.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":25,"name":"Polo Ralph Lauren Chino Trousers","cat":"Trousers","platform":"Vinted","cost":5.0,"soldFor":8.0,"profit":3.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":8,"name":"Champion Eco Authentic Embroidered Sweatshirt","cat":"Hoodie","platform":"Vinted","cost":0.33,"soldFor":1.0,"profit":0.67,"soldDate":"23 May 2026","month":"May 2026"},{"id":17,"name":"Next Formal Shirt BNWT","cat":"T-Shirt","platform":"Vinted","cost":1.67,"soldFor":3.0,"profit":1.33,"soldDate":"23 May 2026","month":"May 2026"},{"id":6,"name":"Carhartt Carpenter Shorts","cat":"Shorts","platform":"Vinted","cost":8.0,"soldFor":8.0,"profit":0.0,"soldDate":"23 May 2026","month":"May 2026"},{"id":598,"name":"Polo Ralph Lauren Classic Chino Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":4.0,"profit":0.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":499,"name":"Tommy Hilfiger Wool Smart Trousers","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":11.0,"profit":7.3,"soldDate":"23 May 2026","month":"May 2026"},{"id":64,"name":"Nike T-Shirt","cat":"T-Shirt","platform":"Vinted","cost":3.0,"soldFor":2.0,"profit":-1.0,"soldDate":"27 May 2026","month":"May 2026"},{"id":65,"name":"Navy Chinos","cat":"Trousers","platform":"Vinted","cost":3.7,"soldFor":1.0,"profit":-2.7,"soldDate":"27 May 2026","month":"May 2026"},{"id":76,"name":"Ralph Lauren Button-Up Shirt","cat":"T-Shirt","platform":"Vinted","cost":8.0,"soldFor":10.0,"profit":2.0,"soldDate":"27 May 2026","month":"May 2026"},{"id":46,"name":"Tommy Hilfiger Striped Knit Jumper","cat":"Hoodie","platform":"Vinted","cost":3.0,"soldFor":3,"soldDate":"11 Jun 2026","profit":0.0,"month":"Jun 2026"},{"id":118,"name":"Pull & Bear Cargo Denim Mini Skirt","cat":"Trousers","platform":"Vinted","cost":0.0,"soldFor":10,"soldDate":"10 Jun 2026","profit":10.0,"month":"Jun 2026"},{"id":35,"name":"Polo Golf RL Pleated Chino","cat":"Trousers","platform":"Vinted","cost":5.0,"soldFor":12,"soldDate":"10 Jun 2026","profit":7.0,"month":"Jun 2026"},{"id":3,"name":"Adidas Oversized Logo Sweatshirt","cat":"Hoodie","platform":"Vinted","cost":1.0,"soldFor":3,"soldDate":"5 Jun 2026","profit":2.0,"month":"Jun 2026"},{"id":576,"name":"Bundle: TH Slim Fit Chinos #576 + TH Chinos #113","cat":"Trousers","platform":"Vinted","cost":7.4,"soldFor":20,"soldDate":"4 Jun 2026","notes":"Bundle sale","profit":12.6,"month":"Jun 2026"},{"id":74,"name":"Polo Ralph Lauren Wool Scarf","cat":"T-Shirt","platform":"Vinted","cost":8.0,"soldFor":10,"soldDate":"2 Jun 2026","profit":2.0,"month":"Jun 2026"}];
 var leads,todos,recs,goals,posts,clients,elsDeals,niches,goalsMonth;
 var vTodos,vSku,vSold,vGoalsMonth;
 
@@ -586,29 +651,147 @@ function load(){
     clients=JSON.parse(localStorage.getItem('gve_clients'))||[];
     elsDeals=JSON.parse(localStorage.getItem('gve_els'))||[];
     loomsLogged=parseInt(localStorage.getItem('gve_looms'))||0;
-    revMTD=parseInt(localStorage.getItem('gve_rev'))||0;
-    goalsMonth=localStorage.getItem('gve_month')||'MAY';
+    revMTD=parseFloat(localStorage.getItem('gve_rev'))||0;
+    goalsMonth=localStorage.getItem('gve_month')||'JUNE';
     var ig=parseInt(localStorage.getItem('gve_ig'))||487;
     setTimeout(function(){document.getElementById('cc-ig').textContent=ig;document.getElementById('tb-ig').textContent=ig;document.getElementById('pb-ig').style.width=Math.min(Math.round(ig/1000*100),100)+'%';document.getElementById('op-ig').textContent=ig+' → 1K';},100);
     vTodos=JSON.parse(localStorage.getItem('gvv_todos'))||JSON.parse(JSON.stringify(DEFAULT_VRECS));
     vSku=JSON.parse(localStorage.getItem('gvv_sku'))||[];
     vSold=JSON.parse(localStorage.getItem('gvv_sold'))||[];
-    vGoalsMonth=localStorage.getItem('gvv_month')||'MAY';
+    vGoalsMonth=localStorage.getItem('gvv_month')||'JUNE';
   }catch(e){
     niches=DEFAULT_NICHES.slice();leads=JSON.parse(JSON.stringify(DEFAULT_LEADS));
     todos=JSON.parse(JSON.stringify(DEFAULT_TODOS));recs=JSON.parse(JSON.stringify(DEFAULT_RECS));
     goals=JSON.parse(JSON.stringify(DEFAULT_GOALS));posts=JSON.parse(JSON.stringify(DEFAULT_POSTS));
-    clients=[];elsDeals=[];loomsLogged=0;revMTD=0;goalsMonth='MAY';
-    vTodos=JSON.parse(JSON.stringify(DEFAULT_VRECS));vSku=[];vSold=[];vGoalsMonth='MAY';
+    clients=[];elsDeals=[];loomsLogged=0;revMTD=0;goalsMonth='JUNE';
+    vTodos=JSON.parse(JSON.stringify(DEFAULT_VRECS));vSku=[];vSold=[];vGoalsMonth='JUNE';
   }
 }
 load();
+
+// One-time migration: seed full ELS history (12 Jun 2026)
+if(!localStorage.getItem('gve_els_seed_jun12')){
+  elsDeals=JSON.parse(JSON.stringify(ELS_SEED));
+  localStorage.setItem('gve_els_seed_jun12','1');
+  localStorage.setItem('gve_els',JSON.stringify(elsDeals));
+}
+// One-time migration: mark Jack Young as Signed (12 Jun 2026)
+if(!localStorage.getItem('gve_jack_signed_jun12')){
+  for(var ji=0;ji<leads.length;ji++){
+    if(leads[ji].name==='Jack Young'){leads[ji].status='Signed';leads[ji].notes='The CapCut System — live, 12 sales';leads[ji].lastMsg='Jun 12';leads[ji].checks=[true,true,true,true];}
+  }
+  localStorage.setItem('gve_jack_signed_jun12','1');
+  localStorage.setItem('gve_leads',JSON.stringify(leads));
+}
+
+// One-time migration: seed reconciled GVE Vintage data — 24 active listings + 87 sold (May 2026) — 12 Jun 2026
+if(!localStorage.getItem('gve_vintage_seed_jun12b')){
+  vSku=JSON.parse(JSON.stringify(VSKU_SEED));
+  vSold=JSON.parse(JSON.stringify(VSOLD_SEED));
+  vGoalsMonth='JUNE';
+  localStorage.setItem('gvv_sku',JSON.stringify(vSku));
+  localStorage.setItem('gvv_sold',JSON.stringify(vSold));
+  localStorage.setItem('gvv_month','JUNE');
+  localStorage.setItem('gvv_listing_baseline','0');// real listings tracked individually now
+  localStorage.setItem('gve_vintage_seed_jun12','1');
+  localStorage.setItem('gve_vintage_seed_jun12b','1');
+}
+
+// CapCut System revenue panel — deal-log driven. Data as of 12 Jun 2026 from Jack_Young_-_payout_tracking.xlsx
+// My cut per close = amount × (15% base + 5% if I set + 10% if I close)
+var CAPCUT_DEFAULT={
+  contracted:7500,collected:5000,operatorPaid:0,updated:'12 Jun 2026',
+  deals:[
+    {client:'Jun 1-9 launch — 12 sales',amt:4946,iSet:false,iClose:false,date:'9 Jun 2026',note:'Jack dialled & closed all · base 15% on after-fee cash'}
+  ]
+};
+var capcut=JSON.parse(localStorage.getItem('gve_capcut')||'null');
+if(!capcut||!capcut.deals){capcut=JSON.parse(JSON.stringify(CAPCUT_DEFAULT));localStorage.setItem('gve_capcut',JSON.stringify(capcut));}
+var capSetOn=false,capCloseOn=false;
+function saveCapcutD(){localStorage.setItem('gve_capcut',JSON.stringify(capcut));}
+function capRate(d){return 0.15+(d.iSet?0.05:0)+(d.iClose?0.10:0);}
+function capCut(d){return (parseFloat(d.amt)||0)*capRate(d);}
+function capEarnedTotal(){return capcut.deals.reduce(function(s,d){return s+capCut(d);},0);}
+function capMonthOf(d){
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var now=new Date();
+  for(var i=0;i<months.length;i++){var m=(d.date||'').match(new RegExp(months[i]+'\\s+(\\d{4})'));if(m)return months[i]+' '+m[1];}
+  for(var i=0;i<months.length;i++){if((d.date||'').indexOf(months[i])>-1)return months[i]+' '+now.getFullYear();}
+  return '';
+}
+function capEarnedThisMonth(){
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var now=new Date();
+  var cur=months[now.getMonth()]+' '+now.getFullYear();
+  return capcut.deals.filter(function(d){return capMonthOf(d)===cur;}).reduce(function(s,d){return s+capCut(d);},0);
+}
+function fmtMoney(n){n=Math.round(n*100)/100;return '£'+n.toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2});}
+function renderCapcut(){
+  if(!document.getElementById('cap-contracted'))return;
+  var earned=capEarnedTotal();
+  document.getElementById('cap-contracted').textContent=fmtMoney(capcut.contracted);
+  document.getElementById('cap-collected').textContent=fmtMoney(capcut.collected);
+  document.getElementById('cap-outstanding').textContent=fmtMoney(capcut.contracted-capcut.collected);
+  document.getElementById('cap-earned').textContent=fmtMoney(earned);
+  document.getElementById('cap-paid').textContent=fmtMoney(capcut.operatorPaid);
+  document.getElementById('cap-owed').textContent=fmtMoney(earned-capcut.operatorPaid);
+  document.getElementById('cap-sales-sub').textContent=capcut.deals.length+' SALES LOGGED';
+  document.getElementById('cap-upd').textContent=capcut.updated;
+  var log=document.getElementById('cap-deal-log');
+  if(log){
+    if(!capcut.deals.length){log.innerHTML='<div style="padding:10px 0;color:var(--tx3);font-size:11px;font-family:Courier New,monospace">NO CLOSES LOGGED YET</div>';}
+    else{
+      log.innerHTML=capcut.deals.slice().reverse().map(function(d){
+        var i=capcut.deals.indexOf(d);
+        var tags=[];if(d.iSet)tags.push('SET');if(d.iClose)tags.push('CLOSE');if(!tags.length)tags.push('BASE');
+        var tagCol=d.iClose?'#4a9c5e':d.iSet?'#4a7fff':'#c8a030';
+        return '<div class="payout-row" style="gap:10px">'+
+          '<span style="color:'+tagCol+';font-weight:700;min-width:78px;font-size:10px">'+tags.join('+')+' '+Math.round(capRate(d)*100)+'%</span>'+
+          '<span style="color:var(--tx);flex:1;font-family:Inter,sans-serif">'+d.client+(d.note?'<span style="color:var(--tx3);font-size:10px;font-family:Courier New,monospace"> · '+d.note+'</span>':'')+'</span>'+
+          '<span style="color:var(--tx2);min-width:55px;text-align:right">£'+(parseFloat(d.amt)||0).toFixed(0)+'</span>'+
+          '<span style="color:#b02a2a;font-weight:700;min-width:60px;text-align:right">+'+fmtMoney(capCut(d))+'</span>'+
+          '<span style="color:var(--tx3);min-width:60px;text-align:right">'+d.date+'</span>'+
+          '<button onclick="delCapcutDeal('+i+')" style="background:transparent;border:none;color:#442020;cursor:pointer;font-size:12px;padding:0 4px">✕</button></div>';
+      }).join('');
+    }
+  }
+}
+function capToggle(which){
+  if(which==='set'){capSetOn=!capSetOn;var b=document.getElementById('cap-tog-set');b.style.background=capSetOn?'#0a1430':'transparent';b.style.color=capSetOn?'#7ab0ff':'#4a7fff';}
+  if(which==='close'){capCloseOn=!capCloseOn;var b=document.getElementById('cap-tog-close');b.style.background=capCloseOn?'#06180c':'transparent';b.style.color=capCloseOn?'#6fd08a':'#4a9c5e';}
+  var rate=15+(capSetOn?5:0)+(capCloseOn?10:0);
+  document.getElementById('cap-rate-preview').textContent=rate+'%';
+}
+function addCapcutDeal(){
+  var name=document.getElementById('cap-deal-name').value.trim();
+  var amt=parseFloat(document.getElementById('cap-deal-amt').value);
+  if(!name||!amt){alert('Enter a client name and sale amount.');return;}
+  capcut.deals.push({client:name,amt:amt,iSet:capSetOn,iClose:capCloseOn,date:today()+' '+new Date().getFullYear(),note:''});
+  capcut.collected=Math.round((parseFloat(capcut.collected)+amt)*100)/100;
+  capcut.updated=today()+' '+new Date().getFullYear();
+  document.getElementById('cap-deal-name').value='';document.getElementById('cap-deal-amt').value='';
+  capSetOn=false;capCloseOn=false;capToggle('set');capToggle('set');// reset visuals
+  document.getElementById('cap-tog-set').style.background='transparent';document.getElementById('cap-tog-set').style.color='#4a7fff';
+  document.getElementById('cap-tog-close').style.background='transparent';document.getElementById('cap-tog-close').style.color='#4a9c5e';
+  document.getElementById('cap-rate-preview').textContent='15%';
+  saveCapcutD();renderCapcut();calcRevMTD();
+}
+function delCapcutDeal(i){
+  if(!confirm('Remove this close? £'+(parseFloat(capcut.deals[i].amt)||0).toFixed(0)+' '+capcut.deals[i].client))return;
+  var amt=parseFloat(capcut.deals[i].amt)||0;
+  capcut.collected=Math.max(0,Math.round((parseFloat(capcut.collected)-amt)*100)/100);
+  capcut.deals.splice(i,1);saveCapcutD();renderCapcut();calcRevMTD();
+}
+function editCapcut(f,label){
+  var v=prompt(label+' (current: '+capcut[f]+'):');if(v===null)return;
+  var n=parseFloat(String(v).replace(/[^0-9.]/g,''));if(isNaN(n))return;
+  capcut[f]=n;capcut.updated=today()+' '+new Date().getFullYear();
+  saveCapcutD();renderCapcut();calcRevMTD();
+}
 
 function switchOS(v){
   document.getElementById('scales-os').style.display=v==='scales'?'block':'none';
   document.getElementById('vintage-os').style.display=v==='vintage'?'block':'none';
   document.getElementById('os-title').textContent=v==='scales'?'GVE SCALES':'GVE VINTAGE';
-  document.getElementById('os-sub').textContent=v==='scales'?'OPERATOR OS // v1.0':'RESELLING OS // v1.0';
+  document.getElementById('os-sub').textContent=v==='scales'?'OPERATOR OS // v1.1':'RESELLING OS // v1.1';
   document.getElementById('tb-ig-wrap').style.display=v==='scales'?'':'none';
   document.getElementById('tb-leads-wrap').style.display=v==='scales'?'':'none';
   if(v==='vintage')setTimeout(renderVintage,100);
@@ -660,7 +843,7 @@ function renderTable(){
       '<td>'+(l.nextFup?'<span style="color:#b02a2a;font-size:11px;font-weight:700">'+l.nextFup+'</span>':'<span style="color:var(--tx3)">—</span>')+'</td>'+
       [0,1,2,3].map(function(n){return '<td onclick="event.stopPropagation()"><span class="cbx'+(l.checks[n]?' on':'')+'" onclick="tChk('+i+','+n+',this)">'+(l.checks[n]?'✓':'')+'</span></td>';}).join('')+
       '<td style="color:var(--tx2);font-size:11px;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+l.notes+'</td>'+
-      '<td onclick="event.stopPropagation()"><button onclick="bookCal(\''+l.name+'\')" style="background:transparent;border:1px solid #2a2a2a;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer">CAL</button></td>';
+      '<td onclick="event.stopPropagation()"><button onclick="bookCal(\''+l.name+'\')" style="background:transparent;border:1px solid #2a2a2a;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer;border-radius:3px">CAL</button></td>';
     tr.addEventListener('click',function(){openEdit(i);});
     tb.appendChild(tr);
   });
@@ -719,7 +902,7 @@ function addGoal(){var t=document.getElementById('gi').value.trim();var p=parseI
 function delGoal(i){goals.splice(i,1);renderGoals();save();}
 function editPct(i){var v=prompt('Update % for "'+goals[i].text+'" ('+goals[i].pct+'%):');if(v===null)return;var n=parseInt(v);if(isNaN(n))return;goals[i].pct=Math.min(Math.max(n,0),100);renderGoals();save();}
 function editGoalText(i){var v=prompt('Rename goal:',goals[i].text);if(!v||!v.trim())return;goals[i].text=v.trim();renderGoals();save();}
-function newMonth(){var m=prompt('New month name (e.g. JUNE):');if(!m)return;goalsMonth=m.toUpperCase();goals.forEach(function(g){g.pct=0;});renderGoals();save();}
+function newMonth(){var m=prompt('New month name (e.g. JULY):');if(!m)return;goalsMonth=m.toUpperCase();goals.forEach(function(g){g.pct=0;});renderGoals();save();}
 function renderCreators(){
   document.getElementById('creator-list').innerHTML=CREATORS.map(function(c){
     return '<div class="cr-row"><div class="cr-name">'+c.name+'</div><div style="display:flex;gap:10px">'+
@@ -777,12 +960,12 @@ function renderFups(){
 }
 function renderClients(){
   var active=clients.filter(function(c){return c.status==='Active';}).length;
-  var total=clients.reduce(function(s,c){return s+(c.payouts||[]).reduce(function(a,p){return a+(parseInt(p.amt)||0);},0);},0);
+  var total=clients.reduce(function(s,c){return s+(c.payouts||[]).reduce(function(a,p){return a+(parseFloat(p.amt)||0);},0);},0);
   document.getElementById('cl-active').textContent=active;
   document.getElementById('cl-total').textContent='£'+total.toLocaleString();
   if(clients.length){
     var labels=clients.map(function(c){return c.name;});
-    var data=clients.map(function(c){return (c.payouts||[]).reduce(function(a,p){return a+(parseInt(p.amt)||0);},0);});
+    var data=clients.map(function(c){return (c.payouts||[]).reduce(function(a,p){return a+(parseFloat(p.amt)||0);},0);});
     var cols=getRed(Math.max(clients.length,1));
     if(AC.cl)AC.cl.destroy();
     AC.cl=new Chart(document.getElementById('chart-clients'),{type:'pie',data:{labels:labels,datasets:[{data:data.map(function(v){return v||0.001;}),backgroundColor:cols,borderWidth:1,borderColor:'#080808'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
@@ -791,10 +974,10 @@ function renderClients(){
   var el=document.getElementById('clients-list');
   if(!clients.length){el.innerHTML='<div style="padding:18px;color:var(--tx3);font-size:13px;font-family:Courier New,monospace">NO CLIENTS YET — ADD YOUR FIRST CLIENT ABOVE</div>';return;}
   el.innerHTML=clients.map(function(c,i){
-    var clientTotal=(c.payouts||[]).reduce(function(a,p){return a+(parseInt(p.amt)||0);},0);
+    var clientTotal=(c.payouts||[]).reduce(function(a,p){return a+(parseFloat(p.amt)||0);},0);
     var statusCol=c.status==='Active'?'#4a9c5e':c.status==='Paused'?'#c8a030':'#442020';
     var payoutsHtml=(c.payouts||[]).slice().reverse().map(function(p){
-      return '<div class="payout-row"><span style="color:#4a9c5e;font-weight:700;min-width:60px">+£'+(parseInt(p.amt)||0).toLocaleString()+'</span><span style="color:var(--tx2);flex:1">'+p.desc+'</span><span style="color:var(--tx3)">'+p.date+'</span></div>';
+      return '<div class="payout-row"><span style="color:#4a9c5e;font-weight:700;min-width:60px">+£'+(parseFloat(p.amt)||0).toLocaleString()+'</span><span style="color:var(--tx2);flex:1">'+p.desc+'</span><span style="color:var(--tx3)">'+p.date+'</span></div>';
     }).join('');
     return '<div class="client-card">'+
       '<div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px">'+
@@ -808,7 +991,7 @@ function renderClients(){
           '<div style="display:flex;gap:5px;margin-top:6px;justify-content:flex-end;flex-wrap:wrap">'+
             '<button onclick="openPayoutM('+i+')" class="rb" style="font-size:10px;padding:4px 10px">+ LOG PAYOUT</button>'+
             '<button onclick="editClientStatus('+i+')" class="gb" style="font-size:9px">STATUS</button>'+
-            '<button onclick="delClient('+i+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:9px;padding:4px 8px;cursor:pointer">REMOVE</button>'+
+            '<button onclick="delClient('+i+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:9px;padding:4px 8px;cursor:pointer;border-radius:3px">REMOVE</button>'+
           '</div>'+
         '</div>'+
       '</div>'+
@@ -834,24 +1017,21 @@ function savePayout(){
   var amt=document.getElementById('payout-amt').value;if(!amt)return;
   var desc=document.getElementById('payout-desc').value||'Payout';var date=document.getElementById('payout-date').value||today();
   if(!clients[payoutClientIdx].payouts)clients[payoutClientIdx].payouts=[];
-  clients[payoutClientIdx].payouts.push({amt:parseInt(amt),desc:desc,date:date});
+  clients[payoutClientIdx].payouts.push({amt:parseFloat(amt),desc:desc,date:date});
   closePayoutM();['payout-amt','payout-desc','payout-date'].forEach(function(id){document.getElementById(id).value='';});
-  renderClients();save();
+  renderClients();calcRevMTD();save();
 }
 function getElsMonth(d){
   if(!d.date)return '';
   var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var now=new Date();
-  // Try "Month YYYY" format first e.g. "May 2026"
   for(var i=0;i<months.length;i++){
     var m=d.date.match(new RegExp(months[i]+'\\s+(\\d{4})'));
     if(m)return months[i]+' '+m[1];
   }
-  // Try "DD Month" format e.g. "13 May" — assume current year
   for(var i=0;i<months.length;i++){
     if(d.date.indexOf(months[i])>-1)return months[i]+' '+now.getFullYear();
   }
-  // Try "DD Month YYYY" e.g. "13 May 2026"
   var m2=d.date.match(/(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/);
   if(m2){
     var mi=months.indexOf(m2[2]);
@@ -864,21 +1044,21 @@ function renderEls(){
   var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var curMon=months[now.getMonth()]+' '+now.getFullYear();
 
-  // Populate month filter
   var sel=document.getElementById('els-fmonth');
   var selVal=sel?sel.value:'';
-  var allMonths=[...new Set(elsDeals.map(getElsMonth).filter(Boolean))].sort();
+  var allMonths=[...new Set(elsDeals.map(getElsMonth).filter(Boolean))].sort(function(a,b){
+    var pa=a.split(' '),pb=b.split(' ');
+    return (parseInt(pa[1])-parseInt(pb[1]))||(months.indexOf(pa[0])-months.indexOf(pb[0]));
+  });
   if(sel){
     sel.innerHTML='<option value="">ALL TIME</option>'+allMonths.map(function(m){return '<option'+(m===selVal?' selected':'')+'>'+m+'</option>';}).join('');
   }
   var filterMon=sel?sel.value:'';
 
-  // Scoreboard shows selected month, or current month if no filter, or all time if ALL TIME
   var scoreDeals;
   if(filterMon){
     scoreDeals=elsDeals.filter(function(d){return getElsMonth(d)===filterMon;});
   } else {
-    // All time — show everything
     scoreDeals=elsDeals;
   }
   var setEarn=0,closeEarn=0,setCt=0,closeCt=0;
@@ -886,13 +1066,15 @@ function renderEls(){
   setEarn=Math.round(setEarn*100)/100;
   closeEarn=Math.round(closeEarn*100)/100;
   var total=Math.round((setEarn+closeEarn)*100)/100;
+  var perLbl=filterMon?filterMon.toUpperCase():'ALL TIME';
   document.getElementById('els-set-earn').textContent='£'+setEarn.toFixed(2);
   document.getElementById('els-close-earn').textContent='£'+closeEarn.toFixed(2);
   document.getElementById('els-total-earn').textContent='£'+total.toFixed(2);
   document.getElementById('els-set-ct').textContent=setCt;
   document.getElementById('els-close-ct').textContent=closeCt;
+  document.getElementById('els-set-sub').textContent=perLbl;
+  document.getElementById('els-close-sub').textContent=perLbl;
 
-  // Chart uses filter selection (or current month if none selected)
   var chartDeals=filterMon?elsDeals.filter(function(d){return getElsMonth(d)===filterMon;}):scoreDeals;
   var chartSet=chartDeals.filter(function(d){return d.type==='setting';}).reduce(function(s,d){return s+parseFloat(d.amt)||0;},0);
   var chartClose=chartDeals.filter(function(d){return d.type==='closing';}).reduce(function(s,d){return s+parseFloat(d.amt)||0;},0);
@@ -906,9 +1088,7 @@ function renderEls(){
   } else {document.getElementById('leg-els').innerHTML='<span style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">LOG DEALS TO SEE SPLIT</span>';}
   var logEl=document.getElementById('els-log');
   if(!elsDeals.length){logEl.innerHTML='<div style="padding:18px;color:var(--tx3);font-size:13px;font-family:Courier New,monospace">NO DEALS LOGGED YET</div>';return;}
-  // Show all deals in log (full history) but scoreboard only shows this month
   var logData=filterMon?elsDeals.filter(function(d){return getElsMonth(d)===filterMon;}):elsDeals;
-  // Show month total in filter bar
   var mtEl=document.getElementById('els-month-total');
   if(mtEl&&filterMon){var mt=logData.reduce(function(s,d){return s+parseFloat(d.amt)||0;},0);mtEl.textContent='TOTAL: £'+mt.toFixed(2);}
   else if(mtEl){mtEl.textContent='';}
@@ -916,20 +1096,20 @@ function renderEls(){
     var i=elsDeals.indexOf(d);
     return '<div class="els-row"><div class="els-type '+(d.type==='setting'?'set':'close')+'">'+(d.type==='setting'?'SETTING':'CLOSING')+'</div>'+
       '<div style="flex:1;font-size:12px;color:var(--tx)">'+d.deal+'<div style="font-size:10px;color:var(--tx3);font-family:Courier New,monospace">'+(d.note||'')+'</div></div>'+
-      '<div style="color:var(--redl);font-weight:700;font-family:Courier New,monospace;width:65px;text-align:right">£'+(parseInt(d.amt)||0).toLocaleString()+'</div>'+
-      '<div style="color:var(--tx3);font-size:10px;font-family:Courier New,monospace;width:50px;text-align:right">'+d.date+'</div>'+
+      '<div style="color:var(--redl);font-weight:700;font-family:Courier New,monospace;width:80px;text-align:right">£'+(parseFloat(d.amt)||0).toFixed(2)+'</div>'+
+      '<div style="color:var(--tx3);font-size:10px;font-family:Courier New,monospace;width:60px;text-align:right">'+d.date+'</div>'+
       '<button onclick="delEls('+i+')" style="background:transparent;border:none;color:#442020;cursor:pointer;font-size:12px;padding:0 4px">✕</button></div>';
   }).join('');
 }
 function addElsDeal(){
   var deal=document.getElementById('els-deal').value.trim();var amt=document.getElementById('els-amt').value.trim();if(!deal||!amt)return;
-  elsDeals.push({type:document.getElementById('els-type').value,deal:deal,amt:parseInt(amt)||0,note:document.getElementById('els-note').value,date:today()});
+  elsDeals.push({type:document.getElementById('els-type').value,deal:deal,amt:parseFloat(amt)||0,note:document.getElementById('els-note').value,date:today()+' '+new Date().getFullYear()});
   document.getElementById('els-deal').value='';document.getElementById('els-amt').value='';document.getElementById('els-note').value='';
   renderEls();calcRevMTD();save();
 }
 function delEls(i){elsDeals.splice(i,1);renderEls();calcRevMTD();save();}
 function updateLooms(){var v=prompt('Looms sent this month (current: '+loomsLogged+'):');if(v===null)return;var n=parseInt(v);if(isNaN(n))return;loomsLogged=n;document.getElementById('sc-out').textContent=n;document.getElementById('pb-out').style.width=Math.min(Math.round(n/48*100),100)+'%';save();}
-function updateRev(){var v=prompt('Revenue this month £ (current: £'+revMTD+'):');if(v===null)return;var n=parseInt(v.replace(/[^0-9]/g,''));if(isNaN(n))return;revMTD=n;document.getElementById('sc-rev').textContent='£'+n;document.getElementById('pb-rev').style.width=Math.min(Math.round(n/2000*100),100)+'%';save();}
+function updateRev(){var v=prompt('Revenue this month £ (current: £'+revMTD+'):');if(v===null)return;var n=parseFloat(v.replace(/[^0-9.]/g,''));if(isNaN(n))return;revMTD=n;document.getElementById('sc-rev').textContent='£'+n;document.getElementById('pb-rev').style.width=Math.min(Math.round(n/2000*100),100)+'%';save();}
 function quickAdd(){
   var n=document.getElementById('an').value.trim();if(!n)return;
   leads.push({name:n,status:document.getElementById('as2').value,niche:document.getElementById('ani2').value,followers:document.getElementById('af').value||'?',platform:document.getElementById('ap2').value,ig:document.getElementById('aig').value,yt:document.getElementById('ayt').value,freeValue:'',firstMsg:today(),lastMsg:today(),nextFup:'',checks:[false,false,false,false],notes:document.getElementById('ants').value});
@@ -972,23 +1152,24 @@ function swTab(name){
   });
   if(name==='analytics')setTimeout(renderAnalytics,50);
   if(name==='followups')renderFups();
-  if(name==='clients')renderClients();
+  if(name==='clients'){renderClients();renderCapcut();}
   if(name==='els'){renderEls();calcRevMTD();}
 }
 function exportData(){
-  var data={leads:leads,todos:todos,recs:recs,goals:goals,posts:posts,clients:clients,elsDeals:elsDeals,niches:niches,looms:loomsLogged,rev:revMTD,ig:parseInt(localStorage.getItem('gve_ig'))||487,month:goalsMonth,exported:new Date().toISOString()};
+  var data={leads:leads,todos:todos,recs:recs,goals:goals,posts:posts,clients:clients,elsDeals:elsDeals,niches:niches,looms:loomsLogged,rev:revMTD,ig:parseInt(localStorage.getItem('gve_ig'))||487,month:goalsMonth,capcut:capcut,exported:new Date().toISOString()};
   document.getElementById('backup-box').value=JSON.stringify(data,null,2);
   document.getElementById('backup-msg').textContent='Exported — copy and save.';
 }
 function importData(){
   var txt=document.getElementById('backup-box').value.trim();if(!txt){document.getElementById('backup-msg').textContent='Paste backup data first.';return;}
-  try{var d=JSON.parse(txt);if(d.leads)leads=d.leads;if(d.todos)todos=d.todos;if(d.recs)recs=d.recs;if(d.goals)goals=d.goals;if(d.posts)posts=d.posts;if(d.clients)clients=d.clients;if(d.elsDeals)elsDeals=d.elsDeals;if(d.niches)niches=d.niches;if(d.looms)loomsLogged=d.looms;if(d.rev)revMTD=d.rev;if(d.month)goalsMonth=d.month;save();renderAll();document.getElementById('backup-msg').textContent='Imported ✓';}
+  try{var d=JSON.parse(txt);if(d.leads)leads=d.leads;if(d.todos)todos=d.todos;if(d.recs)recs=d.recs;if(d.goals)goals=d.goals;if(d.posts)posts=d.posts;if(d.clients)clients=d.clients;if(d.elsDeals)elsDeals=d.elsDeals;if(d.niches)niches=d.niches;if(d.looms)loomsLogged=d.looms;if(d.rev)revMTD=d.rev;if(d.month)goalsMonth=d.month;if(d.capcut){capcut=d.capcut;saveCapcutD();}save();renderAll();document.getElementById('backup-msg').textContent='Imported ✓';}
   catch(e){document.getElementById('backup-msg').textContent='Invalid data.';}
 }
-function resetData(){if(!confirm('Reset ALL Scales data to defaults?'))return;['gve_leads','gve_todos','gve_recs','gve_goals','gve_posts','gve_clients','gve_els','gve_niches','gve_looms','gve_rev','gve_ig','gve_month'].forEach(function(k){localStorage.removeItem(k);});load();renderAll();}
+function resetData(){if(!confirm('Reset ALL Scales data to defaults?'))return;['gve_leads','gve_todos','gve_recs','gve_goals','gve_posts','gve_clients','gve_els','gve_niches','gve_looms','gve_rev','gve_ig','gve_month','gve_capcut','gve_els_seed_jun12','gve_jack_signed_jun12','gve_vintage_seed_jun12','gve_vintage_seed_jun12b'].forEach(function(k){localStorage.removeItem(k);});load();renderAll();}
 function renderVintage(){
   renderVTodos();renderVScoreboard();renderSkus();renderSold();renderVPieCharts();renderVAnalytics();populateSoldMonths();
 }
+/* PL refresh */
 function renderVTodos(){
   var recItems=[{text:'Photo & list 10 items',tag:'DAILY',done:false},{text:'Check messages on all platforms',tag:'DAILY',done:false}];
   document.getElementById('vrec-list').innerHTML=recItems.map(function(t,i){
@@ -1006,7 +1187,6 @@ function vDelTodo(i){vTodos.splice(i,1);renderVTodos();vsave();}
 function vEditTodo(i){var v=prompt('Edit:',vTodos[i].text);if(!v||!v.trim())return;vTodos[i].text=v.trim();renderVTodos();vsave();}
 function vAddTodo(){var v=document.getElementById('vti').value.trim();if(!v)return;vTodos.push({text:v,tag:'TODAY',done:false});document.getElementById('vti').value='';renderVTodos();vsave();}
 function renderVScoreboardFiltered(data, fm){
-  // If no month filter, show current month (scoreboard always = this month)
   if(!fm){renderVScoreboard();return;}
   var rev=data.reduce(function(s,i){return s+(parseFloat(i.soldFor)||0);},0);
   var profit=data.reduce(function(s,i){return s+((parseFloat(i.soldFor)||0)-(parseFloat(i.cost)||0));},0);
@@ -1016,7 +1196,6 @@ function renderVScoreboardFiltered(data, fm){
   document.getElementById('vpb-profit').style.width=Math.min(Math.round(profit/2000*100),100)+'%';
 }
 function renderVPieChartsFiltered(data){
-  // Rebuild pie charts using only the filtered sold data
   ['Vinted','Depop','eBay'].forEach(function(plat){
     var key=plat==='eBay'?'ebay':plat.toLowerCase();
     var platSold=data.filter(function(s){return s.platform===plat;});
@@ -1036,7 +1215,6 @@ function renderVPieChartsFiltered(data){
 function renderVScoreboard(){
   var activeSku=vSku.filter(function(s){return !s.sold;}).length;
   var mon=monthLabel();
-  // Always use current calendar month for scoreboard — resets on 1st of each month
   var mtdSold=vSold.filter(function(s){return s.month===mon;});
   var mtdRev=mtdSold.reduce(function(s,i){return s+(parseFloat(i.soldFor)||0);},0);
   var mtdProfit=mtdSold.reduce(function(s,i){return s+((parseFloat(i.soldFor)||0)-(parseFloat(i.cost)||0));},0);
@@ -1044,17 +1222,16 @@ function renderVScoreboard(){
   document.getElementById('vsc-profit').textContent='£'+Math.round(mtdProfit).toLocaleString();
   document.getElementById('vpb-rev').style.width=Math.min(Math.round(mtdRev/4000*100),100)+'%';
   document.getElementById('vpb-profit').style.width=Math.min(Math.round(mtdProfit/2000*100),100)+'%';
-  // Count new listings added this calendar month
   var now=new Date();
   var monStr=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][now.getMonth()]+' '+now.getFullYear();
   var newListings=vSku.filter(function(s){return !s.sold&&s.listedDate&&s.listedDate.indexOf(monStr)>-1;}).length;
-  // Add the manually counted 47 for May 2026 baseline
   var manualBaseline=localStorage.getItem('gvv_listing_baseline')?parseInt(localStorage.getItem('gvv_listing_baseline')):0;
   var totalListings=newListings+manualBaseline;
   document.getElementById('vsc-list').textContent=totalListings;
   document.getElementById('vpb-list').style.width=Math.min(Math.round(totalListings/310*100),100)+'%';
   document.getElementById('v-sku-live').textContent=activeSku;
   document.getElementById('v-total-sold').textContent=vSold.length;
+  if(typeof updateMonthPL==='function')updateMonthPL();
 }
 function getNextSku(){
   var used=new Set(vSku.filter(function(s){return !s.sold;}).map(function(s){return s.id;}));
@@ -1068,7 +1245,7 @@ function addSku(){
   var taken=vSku.find(function(s){return !s.sold&&s.id===id;});
   if(taken){alert('SKU #'+id+' is already in use by "'+taken.name+'". Pick a different number.');return;}
   var rawDate=document.getElementById('vsku-listed-date').value;
-  var listedDate=rawDate?formatDate(rawDate):today();
+  var listedDate=rawDate?formatDate(rawDate):today()+' '+new Date().getFullYear();
   vSku.push({id:id,name:name,cat:document.getElementById('vsku-cat').value,platform:document.getElementById('vsku-plat').value,cost:parseFloat(document.getElementById('vsku-cost').value)||0,listedPrice:parseFloat(document.getElementById('vsku-price').value)||0,listedDate:listedDate,sold:false});
   ['vsku-id','vsku-name','vsku-cost','vsku-price','vsku-listed-date'].forEach(function(k){document.getElementById(k).value='';});
   renderSkus();renderVScoreboard();renderUsable();vsave();
@@ -1088,13 +1265,13 @@ function renderSkus(){
     tr.innerHTML='<td style="color:var(--redl);font-weight:700;font-family:Courier New,monospace">#'+s.id+'</td>'+
       '<td style="font-weight:600">'+s.name+'</td>'+
       '<td style="color:var(--tx2);font-size:11px">'+s.cat+'</td>'+
-      '<td><span style="color:'+platCol+';font-weight:700;font-size:11px;font-family:Courier New,monospace">'+s.platform+'</span></td>'+
+      '<td><span style="color:'+platCol+';font-weight:700;font-size:11px;font-family:Courier New,monospace">'+(s.platform||'Vinted')+'</span></td>'+
       '<td style="color:var(--tx3);font-family:Courier New,monospace">£'+parseFloat(s.cost).toFixed(2)+'</td>'+
       '<td style="color:#4a9c5e;font-weight:700;font-family:Courier New,monospace">£'+parseFloat(s.listedPrice).toFixed(2)+'</td>'+
       '<td style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">'+s.listedDate+'</td>'+
       '<td onclick="event.stopPropagation()">'+
         '<button onclick="openSellM('+i+')" class="rb" style="font-size:10px;padding:3px 8px;margin-right:4px">SOLD</button>'+
-        '<button onclick="delSku('+i+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer">DEL</button>'+
+        '<button onclick="delSku('+i+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer;border-radius:3px">DEL</button>'+
       '</td>';
     tb.appendChild(tr);
   });
@@ -1103,15 +1280,14 @@ function delSku(i){if(!confirm('Delete SKU #'+vSku[i].id+' "'+vSku[i].name+'"?')
 function openSellM(i){
   sellSkuId=i;var s=vSku[i];
   document.getElementById('sell-info').innerHTML='SKU <b style="color:var(--redl)">#'+s.id+'</b> — '+s.name+' ('+s.cat+') · Listed: <b style="color:#4a9c5e">£'+parseFloat(s.listedPrice).toFixed(2)+'</b> · Cost: £'+parseFloat(s.cost).toFixed(2);
-  document.getElementById('sell-plat').value=s.platform;
-  document.getElementById('sell-date').value=today();
+  document.getElementById('sell-plat').value=s.platform||'Vinted';
   document.getElementById('sell-modal').style.display='flex';
 }
 function closeSellM(){document.getElementById('sell-modal').style.display='none';sellSkuId=-1;}
 function confirmSell(){
   if(sellSkuId<0)return;
-  var price=parseFloat(document.getElementById('sell-price').value);if(!price)return;
-  var rawSellDate=document.getElementById('sell-date').value;var date=rawSellDate?formatDate(rawSellDate):today();
+  var price=parseFloat(document.getElementById('sell-price').value);if(!price&&price!==0)return;
+  var rawSellDate=document.getElementById('sell-date').value;var date=rawSellDate?formatDate(rawSellDate):today()+' '+new Date().getFullYear();
   var plat=document.getElementById('sell-plat').value;
   var s=vSku[sellSkuId];
   vSold.push({id:s.id,name:s.name,cat:s.cat,platform:plat,cost:s.cost,soldFor:price,profit:price-s.cost,soldDate:date,month:monthLabel()});
@@ -1130,11 +1306,10 @@ function renderSold(){
   var fp=document.getElementById('vsold-fplat').value;
   var fc=document.getElementById('vsold-fcat').value;
   var data=vSold.filter(function(s){return(!fm||s.month===fm)&&(!fp||s.platform===fp)&&(!fc||s.cat===fc);});
-  // Update pie charts and top totals to reflect filtered data
   renderVPieChartsFiltered(data);
   renderVScoreboardFiltered(data, fm);
   var tb=document.getElementById('vsold-tbody');tb.innerHTML='';
-  if(!data.length){tb.innerHTML='<tr><td colspan="9" style="padding:16px;color:var(--tx3);text-align:center;font-family:Courier New,monospace">NO SOLD ITEMS</td></tr>';}
+  if(!data.length){tb.innerHTML='<tr><td colspan="10" style="padding:16px;color:var(--tx3);text-align:center;font-family:Courier New,monospace">NO SOLD ITEMS</td></tr>';}
   else{
     data.slice().reverse().forEach(function(s){
       var actualIdx=vSold.indexOf(s);
@@ -1150,7 +1325,7 @@ function renderSold(){
         '<td class="sold-profit '+(profit>=0?'pos':'neg')+'" style="font-family:Courier New,monospace">'+(profit>=0?'+':'')+profit.toFixed(2)+'</td>'+
         '<td style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">'+s.soldDate+'</td>'+
         '<td style="color:var(--tx3);font-size:11px;font-family:Courier New,monospace">'+s.month+'</td>'+
-        '<td onclick="event.stopPropagation()"><button onclick="delSold('+actualIdx+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer">DEL</button></td>';
+        '<td onclick="event.stopPropagation()"><button onclick="delSold('+actualIdx+')" style="background:transparent;border:1px solid #3a1010;color:#b02a2a;font-family:Courier New,monospace;font-size:10px;padding:3px 7px;cursor:pointer;border-radius:3px">DEL</button></td>';
       tb.appendChild(tr);
     });
   }
@@ -1198,7 +1373,6 @@ function renderVAnalytics(){
 function delSold(i){
   if(!confirm('Remove this sold entry? The SKU number will become usable again.'))return;
   var s=vSold[i];
-  // Free up the SKU - mark it as not sold in vSku if it exists
   var skuIdx=vSku.findIndex(function(sk){return sk.id===s.id&&sk.sold;});
   if(skuIdx>-1)vSku.splice(skuIdx,1);
   vSold.splice(i,1);
@@ -1207,7 +1381,7 @@ function delSold(i){
 function renderUsable(){
   var filter=document.getElementById('vusable-filter').value;
   var takenMap={};
-  vSku.forEach(function(s){if(!s.sold)takenMap[s.id]={name:s.name,cat:s.cat,platform:s.platform,date:s.listedDate};});
+  vSku.forEach(function(s){if(!s.sold)takenMap[s.id]={name:s.name,cat:s.cat,platform:s.platform||'Vinted',date:s.listedDate};});
   var items=[];
   for(var i=1;i<=600;i++){
     var isTaken=!!takenMap[i];
@@ -1222,10 +1396,10 @@ function renderUsable(){
   el.innerHTML=items.map(function(x){
     var numStyle='color:var(--redl);font-weight:700;font-family:Courier New,monospace;width:36px;flex-shrink:0;font-size:13px';
     var badge=x.taken
-      ? '<span style="display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;font-family:Courier New,monospace;background:#200404;border:1px solid #6a1010;color:#e04040;letter-spacing:1px">TAKEN</span>'
-      : '<span style="display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;font-family:Courier New,monospace;background:#041408;border:1px solid #185c30;color:#40c870;letter-spacing:1px">USABLE</span>';
+      ? '<span style="display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;font-family:Courier New,monospace;background:#200404;border:1px solid #6a1010;color:#e04040;letter-spacing:1px;border-radius:3px">TAKEN</span>'
+      : '<span style="display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;font-family:Courier New,monospace;background:#041408;border:1px solid #185c30;color:#40c870;letter-spacing:1px;border-radius:3px">USABLE</span>';
     var info=x.taken
-      ? '<span style="font-size:11px;color:var(--tx2);font-family:Courier New,monospace;margin-left:8px">'+x.info.name+' · '+x.info.cat+' · '+x.info.platform+'</span>'
+      ? '<span style="font-size:11px;color:var(--tx2);font-family:Courier New,monospace;margin-left:8px">'+x.info.name+' · '+x.info.cat+'</span>'
       : '';
     return '<div style="display:flex;align-items:center;gap:8px;padding:5px 8px;border-bottom:1px solid var(--bdr);background:var(--bg2)">'+
       '<span style="'+numStyle+'">#'+String(x.num).padStart(3,'0')+'</span>'+
@@ -1267,25 +1441,34 @@ function calcRevMTD(){
   var now=new Date();
   var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var curMon=months[now.getMonth()]+' '+now.getFullYear();
-  // ELS this month
   var elsRev=elsDeals.filter(function(d){return getElsMonth(d)===curMon;}).reduce(function(s,d){return s+(parseFloat(d.amt)||0);},0);
-  // Client payouts this month
   var clientRev=clients.reduce(function(s,c){
     return s+(c.payouts||[]).filter(function(p){
       return p.date&&months.some(function(m,i){return p.date.includes(m)&&i===now.getMonth()&&p.date.includes(String(now.getFullYear()));});
-    }).reduce(function(a,p){return a+(parseInt(p.amt)||0);},0);
+    }).reduce(function(a,p){return a+(parseFloat(p.amt)||0);},0);
   },0);
-  var total=Math.round((elsRev+clientRev)*100)/100;
+  var capcutRev=(typeof capEarnedThisMonth==='function')?capEarnedThisMonth():0;
+  var total=Math.round((elsRev+clientRev+capcutRev)*100)/100;
   revMTD=total;
   document.getElementById('sc-rev').textContent='£'+total.toFixed(2);
   document.getElementById('pb-rev').style.width=Math.min(Math.round(total/2000*100),100)+'%';
-  // Update revenue goal
   if(goals[1]&&goals[1].text.toLowerCase().includes('revenue')){goals[1].pct=Math.min(Math.round(total/2000*100),100);renderGoals();}
+  updateMonthPL();
+}
+function vintageProfitMTD(){
+  var mon=monthLabel();
+  return vSold.filter(function(s){return s.month===mon;}).reduce(function(sum,i){return sum+((parseFloat(i.soldFor)||0)-(parseFloat(i.cost)||0));},0);
+}
+function updateMonthPL(){
+  var combined=(revMTD||0)+vintageProfitMTD();
+  var txt='£'+Math.round(combined).toLocaleString();
+  var a=document.getElementById('pl-scales-val');if(a)a.textContent=txt;
+  var b=document.getElementById('pl-vintage-val');if(b)b.textContent=txt;
 }
 function renderAll(){
   populateNicheSelects();
   setTimeout(calcRevMTD,300);
-  renderTable();renderTodos();renderRec();renderGoals();renderCreators();renderPosts();renderFups();
+  renderTable();renderTodos();renderRec();renderGoals();renderCreators();renderPosts();renderFups();renderCapcut();
   document.getElementById('sc-out').textContent=loomsLogged;
   document.getElementById('pb-out').style.width=Math.min(Math.round(loomsLogged/48*100),100)+'%';
   document.getElementById('sc-rev').textContent='£'+revMTD;
@@ -1294,11 +1477,11 @@ function renderAll(){
   setTimeout(renderNichePie,200);
 }
 clock();setInterval(clock,1000);
-// Set May 2026 manual listing baseline
 if(!localStorage.getItem('gvv_listing_baseline')){localStorage.setItem('gvv_listing_baseline','47');}
 renderAll();
 ['analytics','followups','clients','els','backup'].forEach(function(t){document.getElementById('tab-'+t).style.display='none';});
 ['vtab-sold','vtab-usable','vtab-analytics','vtab-backup'].forEach(function(t){document.getElementById(t).style.display='none';});
 </script>
+</div>
 </body>
 </html>
