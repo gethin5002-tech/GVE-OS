@@ -703,10 +703,24 @@ if(!localStorage.getItem('gve_carpetman_seed')){
   if(!hasCarpet){
     clients.push({name:'CarpetManWales',niche:'Carpet shop · website build',status:'Active',start:'15 May 2026',
       notes:'One-off website build for dad\u2019s flooring business',
-      payouts:[{amt:450,desc:'Website build',date:'15 May 2026'}]});
+      payouts:[{amt:450,desc:'Website build',date:'15 Jun 2026'}]});
     localStorage.setItem('gve_clients',JSON.stringify(clients));
   }
   localStorage.setItem('gve_carpetman_seed','1');
+}
+
+// One-time fix: ensure CarpetManWales £450 website-build payout is dated 15 Jun 2026 (was paid today)
+if(!localStorage.getItem('gve_carpetman_jun15')){
+  var fixed=false;
+  clients.forEach(function(c){
+    if((c.name||'').toLowerCase().indexOf('carpet')>-1){
+      (c.payouts||[]).forEach(function(p){
+        if(Math.round(parseFloat(p.amt))===450){p.date='15 Jun 2026';fixed=true;}
+      });
+    }
+  });
+  if(fixed)localStorage.setItem('gve_clients',JSON.stringify(clients));
+  localStorage.setItem('gve_carpetman_jun15','1');
 }
 
 // CapCut System revenue panel — deal-log driven. Data as of 12 Jun 2026 from Jack_Young_-_payout_tracking.xlsx
@@ -1190,7 +1204,7 @@ function importData(){
   try{var d=JSON.parse(txt);if(d.leads)leads=d.leads;if(d.todos)todos=d.todos;if(d.recs)recs=d.recs;if(d.goals)goals=d.goals;if(d.posts)posts=d.posts;if(d.clients)clients=d.clients;if(d.elsDeals)elsDeals=d.elsDeals;if(d.niches)niches=d.niches;if(d.looms)loomsLogged=d.looms;if(d.rev)revMTD=d.rev;if(d.month)goalsMonth=d.month;if(d.capcut){capcut=d.capcut;saveCapcutD();}save();renderAll();document.getElementById('backup-msg').textContent='Imported ✓';}
   catch(e){document.getElementById('backup-msg').textContent='Invalid data.';}
 }
-function resetData(){if(!confirm('Reset ALL Scales data to defaults?'))return;['gve_leads','gve_todos','gve_recs','gve_goals','gve_posts','gve_clients','gve_els','gve_niches','gve_looms','gve_rev','gve_ig','gve_month','gve_capcut','gve_els_seed_jun12','gve_jack_signed_jun12','gve_vintage_seed_jun12','gve_vintage_seed_jun12d','gve_carpetman_seed'].forEach(function(k){localStorage.removeItem(k);});load();renderAll();}
+function resetData(){if(!confirm('Reset ALL Scales data to defaults?'))return;['gve_leads','gve_todos','gve_recs','gve_goals','gve_posts','gve_clients','gve_els','gve_niches','gve_looms','gve_rev','gve_ig','gve_month','gve_capcut','gve_els_seed_jun12','gve_jack_signed_jun12','gve_vintage_seed_jun12','gve_vintage_seed_jun12d','gve_carpetman_seed','gve_carpetman_jun15'].forEach(function(k){localStorage.removeItem(k);});load();renderAll();}
 function renderVintage(){
   renderVTodos();renderVScoreboard();renderSkus();renderSold();renderVPieCharts();renderVAnalytics();populateSoldMonths();
 }
